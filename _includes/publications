@@ -1,0 +1,15 @@
+{% assign journals = "Journal of Mechanical Design;Design Studies;Engineering Structures;Data in Brief;Team Performance Management;Design Science;Journal of Computing and Information Science in Engineering;Computational Materials Science;Decision Support Systems;Stats;SN Computer Science;Additive Manufacturing;Artificial Intelligence for Engineering Design, Analysis and Manufacturing" | split: ";" %}
+
+<ol>
+{% assign pub_list = site.data.citations | sort: "Year" | reverse %}
+{% for citation in pub_list %}
+{% if journals contains citation.Publication %}
+  <li>
+    {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
+    {% assign size = citation.Authors | size | minus: 2 %}
+    {% assign authors = citation.Authors | slice: 0, size | split: ";" | array_to_sentence_string %}
+    {{ authors }} ({{citation.Year}}) <a href="{{ url }}">"{{citation.Title}}"</a> <i>{{citation.Publication}}</i>.
+  </li>
+  {% endif %}
+{% endfor %}
+</ol>
