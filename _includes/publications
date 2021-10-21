@@ -8,7 +8,6 @@
   {% assign years = include.year | split: ";" %}
 {% endif %}
 
-
 <ol>
 {% for citation in pub_list %}
   {% if include.venue %}
@@ -30,7 +29,6 @@
   {% else %}
     {% assign is_year = true %}
   {% endif %}
-
 
   {% if is_venue and is_year %}
     <li>
