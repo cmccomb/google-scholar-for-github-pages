@@ -8,18 +8,35 @@ title: Google Scholar for GitHub Pages
 
 ## Include all publications
 To include every single publication in your csv file, use:
-{% highlight liquid %}
 {% raw %}
 {% include publications %}
 {% endraw %}
-{% endhighlight %}
+
 ### Example output
 {% include publications %}
 
-## Include all publications of a specific type
+## Include publications from specific venues
+To include publications in specific venues, pass the `venue` variable to the include. You can pass in multiple venues separated by semi-colons.
+{% raw %}
+{% include publications venue="Journal of Mechanical Design;Design Studies" %}
+{% endraw %}
 
-## Include publications from a specific venue
+### Example output
 
-## Include publications from a specific year
+## Include publications from specific years
+To include publications from specific years, pass the `year` variable to the include. You can pass in multiple years separated by semi-colons.
+{% raw %}
+{% include publications year="2017;2021" %}
+{% endraw %}
 
-## Include publications by a specific author
+### Example output
+
+## Include publications by specific authors
+### Example output
+
+## Throwing it all together
+The best part is that all of these options play nicely together! For instance, to get all publications with authors Ayush Raina OR Glen Williams that were published in years 2021 OR 2020 OR 2019 in the venue Design Studies, use this command:
+{% raw %}
+{% include publications author="Raina,Ayush;Williams,Glen" year="2021;2020;2019" venue="Design Studies"%}
+{% endraw %}
+### Example output
