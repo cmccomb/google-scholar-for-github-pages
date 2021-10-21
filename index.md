@@ -2,6 +2,13 @@
 layout: default
 title: Google Scholar for GitHub Pages
 ---
+
+<style>
+  .footer {
+    display: none;
+  }
+</style>
+
 # How to use
 
 # Examples
