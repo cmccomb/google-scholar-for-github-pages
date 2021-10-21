@@ -4,6 +4,8 @@ title: Google Scholar for GitHub Pages
 ---
 
 # How to use
+![](/assets/images/export-csv.png)
+![](/assets/images/export-all.png)
 
 # Examples
 You can use this include file to slice and dice your publications in several different ways. 
