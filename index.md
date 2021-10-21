@@ -22,6 +22,7 @@ To include publications in specific venues, pass the `venue` variable to the inc
 {% endraw %}
 
 ### Example output
+{% include publications venue="Journal of Mechanical Design;Design Studies" %}
 
 ## Include publications from specific years
 To include publications from specific years, pass the `year` variable to the include. You can pass in multiple years separated by semi-colons.
