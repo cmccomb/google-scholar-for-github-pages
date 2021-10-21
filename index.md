@@ -6,14 +6,20 @@ title: Google Scholar for GitHub Pages
 
 # Examples
 
-## Include journal publications
-To include every single publication in your `csv` file, use:
-{% highlight liquid %}
+## Include all publications
+To include every single publication in your csv file, use:
+```liquid
 {% include publications %}
-{% endhighlight %}
-
+```
+### Example output
 {% include publications %}
 
 ## Include publications from a specific year
+{% highlight liquid %}
+{% include publications year="2020%}
+{% endhighlight %}
+### Example output
+{% include publications year="2020%}
+
 
 ## Include publications by a specific author
