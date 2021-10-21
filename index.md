@@ -40,15 +40,23 @@ To include publications from specific years, pass the `year` variable to the inc
 </details>
 
 ## Include publications by specific authors
-### Example output
+To include publications from specific years, pass the `author` variable to the include. You can pass in multiple authors separated by semi-colons.
+{% raw %}
+{% include publications author="Raina,Ayush;Williams,Glen" %}
+{% endraw %}
+
+<details>
+<summary><i>Example output</i></summary>
+{% include publications year="2014" %}
+</details>
 
 ## Throwing it all together
 The best part is that all of these options play nicely together! For instance, to get all publications with authors Ayush Raina OR Glen Williams that were published in years 2021 OR 2020 OR 2019 in the venue Design Studies, use this command:
 {% raw %}
-{% include publications author="Raina,Ayush;Williams,Glen" year="2021;2020;2019" venue="Design Studies"%}
+{% include publications author="Raina,Ayush;Williams,Glen" year="2021;2020;2019" venue="Journal of Mechanical Design"%}
 {% endraw %}
 ### Example output
 <details>
 <summary><i>Example output</i></summary>
-{% include publications year="2019" journal="Journal of Mechanical Design" %}
+{% include publications author="Raina,Ayush;Williams,Glen" year="2021;2020;2019" venue="Journal of Mechanical Design"%}
 </details>
