@@ -8,11 +8,13 @@ title: Google Scholar for GitHub Pages
 
 ## Include all publications
 To include every single publication in your csv file, use:
-```liquid
+{% raw %}
 {% include publications %}
-```
+{% endraw %}
 ### Example output
 {% include publications %}
+
+## Include all publications of a specific type
 
 ## Include publications from a specific venue
 
