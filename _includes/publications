@@ -1,27 +1,44 @@
-{% if include.venue %}
-{% assign venues = include.venue | split: ";" %}
-{% endif %}
 {% assign pub_list = site.data.citations | sort: "Year" | reverse %}
+
+{% if include.venue %}
+  {% assign venues = include.venue | split: ";" %}
+{% endif %}
+
+{% if include.year %}
+  {% assign years = include.year | split: ";" %}
+{% endif %}
 
 
 <ol>
 {% for citation in pub_list %}
-{% if include.venue %}
-  {% if venues contains citation.Publication %}
-    {% assign is_venue = true %}
+  {% if include.venue %}
+    {% if venues contains citation.Publication %}
+      {% assign is_venue = true %}
+    {% else %}
+      {% assign is_venue = false %}
+    {% endif %}
   {% else %}
-    {% assign is_venue = false %}
+    {% assign is_venue = true %}
   {% endif %}
-{% else %}
-  {% assign is_venue = true %}
-{% endif %}
-{% if is_venue %}
-  <li>
-    {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
-    {% assign size = citation.Authors | size | minus: 2 %}
-    {% assign authors = citation.Authors | slice: 0, size | split: ";" | array_to_sentence_string %}
-    {{ authors }} ({{citation.Year}}) <a href="{{ url }}">"{{citation.Title}}"</a> <i>{{citation.Publication}}</i>.
-  </li>
+  
+  {% if include.year %}
+    {% if years contains citation.Year %}
+      {% assign is_year = true %}
+    {% else %}
+      {% assign is_year = false %}
+    {% endif %}
+  {% else %}
+    {% assign is_year = true %}
+  {% endif %}
+
+
+  {% if is_venue and is_year %}
+    <li>
+      {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
+      {% assign size = citation.Authors | size | minus: 2 %}
+      {% assign authors = citation.Authors | slice: 0, size | split: ";" | array_to_sentence_string %}
+      {{ authors }} ({{citation.Year}}) <a href="{{ url }}">"{{citation.Title}}"</a> <i>{{citation.Publication}}</i>.
+    </li>
   {% endif %}
 {% endfor %}
 </ol>
