@@ -1,1 +1,1 @@
-# google-scholar-for-github-pages
+# Google Scholar for GitHub Pages
