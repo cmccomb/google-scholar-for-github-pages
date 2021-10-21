@@ -1,9 +1,17 @@
-{% assign journals = "Journal of Mechanical Design;Design Studies;Engineering Structures;Data in Brief;Team Performance Management;Design Science;Journal of Computing and Information Science in Engineering;Computational Materials Science;Decision Support Systems;Stats;SN Computer Science;Additive Manufacturing;Artificial Intelligence for Engineering Design, Analysis and Manufacturing" | split: ";" %}
+{% if include.venue %}
+{% assign venues = include.venue | split: ";" %}
+{% endif %}
+{% assign pub_list = site.data.citations | sort: "Year" | reverse %}
+
 
 <ol>
-{% assign pub_list = site.data.citations | sort: "Year" | reverse %}
 {% for citation in pub_list %}
-{% if journals contains citation.Publication %}
+{% if include.venue %}
+{% assign is_venue = venues contains citation.Publication%}
+{% else %}
+{% assign is_venue = true %}
+{% endif %}
+{% if is_venue %}
   <li>
     {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
     {% assign size = citation.Authors | size | minus: 2 %}
