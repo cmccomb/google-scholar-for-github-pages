@@ -7,9 +7,13 @@
 <ol>
 {% for citation in pub_list %}
 {% if include.venue %}
-{% assign is_venue = venues contains citation.Publication%}
+  {% if venues contains citation.Publication %}
+    {% assign is_venue = true %}
+  {% else %}
+    {% assign is_venue = false %}
+  {% endif %}
 {% else %}
-{% assign is_venue = true %}
+  {% assign is_venue = true %}
 {% endif %}
 {% if is_venue %}
   <li>
