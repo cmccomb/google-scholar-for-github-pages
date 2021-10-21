@@ -8,9 +8,11 @@ title: Google Scholar for GitHub Pages
 
 ## Include all publications
 To include every single publication in your csv file, use:
+{% highlight liquid %}
 {% raw %}
 {% include publications %}
 {% endraw %}
+{% endhighlight %}
 ### Example output
 {% include publications %}
 
