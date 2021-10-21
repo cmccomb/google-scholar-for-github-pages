@@ -36,22 +36,22 @@ To include publications in specific venues, pass the `venue` variable to the inc
 ## Include publications from specific years
 To include publications from specific years, pass the `year` variable to the include. You can pass in multiple years separated by semi-colons.
 {% raw %}
-{% include publications year="2017;2021" %}
+{% include publications year="2014;2015" %}
 {% endraw %}
 
 <details>
 <summary><i>Example output</i></summary>
-{% include publications year="2014" %}
+{% include publications year="2014;2015" %}
 </details>
 <br/>
 
 ## Throwing it all together
-The best part is that all of these options play nicely together! For instance, to get all publications from years 2015 OR 2016 in the venue Design Studies, use this command:
+The best part is that all of these options play nicely together! For instance, to get all publications from years 2015 OR 2016 in the venues Journal of Mechanical Design OR Design Studies, use this command:
 {% raw %}
-{% include publications year="2015;2016" venue="Journal of Mechanical Design"%}
+{% include publications year="2015;2016" venue="Journal of Mechanical Design;Design Studies"%}
 {% endraw %}
 
 <details>
 <summary><i>Example output</i></summary>
-{% include publications year="2015;2016" venue="Journal of Mechanical Design"%}
+{% include publications year="2015;2016" venue="Journal of Mechanical Design;Design Studies"%}
 </details>
