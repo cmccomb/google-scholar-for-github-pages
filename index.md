@@ -6,8 +6,8 @@ title: Google Scholar for GitHub Pages
 # How to use
 1. Go to your google scholar page and select all of your publications. Then select the option to export a CSV. ![](/assets/images/export-csv.png)
 2. Next, make sure that you download all of your publications. ![](/assets/images/export-all.png)
-3. Upload this file to `_data/` in your Github Pages directory. It must be named `citations.csv`. Sometimes there is an extra character at the beginning of the first line of the CSV. You should remove this.
-4. Download the [publications](https://github.com/cmccomb/google-scholar-for-github-pages/blob/main/_includes/publications) include file and upload it to the `_includes`.
+3. Upload this file to `_data/` directory in your Github Pages repository. It must be named `citations.csv`. Sometimes there is an extra character at the beginning of the first line of the CSV. You should remove this.
+4. Download the [publications](https://github.com/cmccomb/google-scholar-for-github-pages/blob/main/_includes/publications) include file and upload it to the `_includes/` directory in your in your Github Pages repository.
 5. You're ready to go! See below for some different use cases. 
 
 # Examples
