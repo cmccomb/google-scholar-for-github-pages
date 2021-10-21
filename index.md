@@ -31,6 +31,7 @@ To include publications from specific years, pass the `year` variable to the inc
 {% endraw %}
 
 ### Example output
+{% include publications year="2014" %}
 
 ## Include publications by specific authors
 ### Example output
