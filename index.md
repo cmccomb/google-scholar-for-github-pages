@@ -13,9 +13,9 @@ To include every single publication in your csv file, use:
 {% endraw %}
 
 <details>
-<summary><h3>Example output</h3></summary>
+<summary><i>Example output</i></summary>
 {% include publications %}
-<details>
+</details>
   
 ## Include publications from specific venues
 To include publications in specific venues, pass the `venue` variable to the include. You can pass in multiple venues separated by semi-colons.
@@ -24,7 +24,7 @@ To include publications in specific venues, pass the `venue` variable to the inc
 {% endraw %}
 
 <details>
-<summary><h3>Example output</h3></summary>
+<summary><i>Example output</i></summary>
 {% include publications venue="Journal of Mechanical Design;Design Studies" %}
 </details>
 
@@ -35,7 +35,7 @@ To include publications from specific years, pass the `year` variable to the inc
 {% endraw %}
 
 <details>
-<summary><h3>Example output</h3></summary>
+<summary><i>Example output</i></summary>
 {% include publications year="2014" %}
 </details>
 
@@ -48,3 +48,7 @@ The best part is that all of these options play nicely together! For instance, t
 {% include publications author="Raina,Ayush;Williams,Glen" year="2021;2020;2019" venue="Design Studies"%}
 {% endraw %}
 ### Example output
+<details>
+<summary><i>Example output</i></summary>
+{% include publications year="2019" journal="Journal of Mechanical Design" %}
+</details>
