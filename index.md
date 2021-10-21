@@ -3,15 +3,10 @@ layout: default
 title: Google Scholar for GitHub Pages
 ---
 
-<style>
-  .footer {
-    display: none;
-  }
-</style>
-
 # How to use
 
 # Examples
+You can use this include file to slice and dice your publications in several different ways. 
 
 ## Include all publications
 To include every single publication in your csv file, use:
