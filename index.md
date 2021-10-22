@@ -50,6 +50,20 @@ To include publications from specific years, pass the `year` variable to the inc
 </details>
 <br/>
 
+
+
+## Include publications with a specific term in the title
+To include publications with a specific term in the title, pass the `searchterm` variable to the include. The search term is not case sensitive.
+{% raw %}
+{% include publications searchterm="additive" %}
+{% endraw %}
+
+<details>
+<summary><i>Example output</i></summary>
+{% include publications year="2014;2015" %}
+</details>
+<br/>
+
 ## Throwing it all together
 The best part is that all of these options play nicely together! For instance, to get all publications from years 2015 OR 2016 in the venues Journal of Mechanical Design OR Design Studies, use this command:
 {% raw %}
