@@ -3,16 +3,15 @@ layout: default
 title: Google Scholar for GitHub Pages
 ---
 
-# How to use
-Using it is pretty simple!
+# Setup
 1. Download your Google Scholar publications in a csv. Make sure you get all of them.
 2. Upload that csv file to the `_data/` directory of your site directory and make sure its named `citations.csv`.
 3. Download the `publications` include file from this repository ([here](https://github.com/cmccomb/google-scholar-for-github-pages/blob/main/_includes/publications)).
 4. Upload that file to the `_includes/` directory of your site.
 5. You're ready to go! See below for some different use cases. 
 
-# Examples
-You can use this include file to slice and dice your publications in several different ways by passing different parameters. All parameters are optional. Parameters can also be used together - when used together, they implicitly have an AND relationship. All parameters should be specified as strings.
+# Inputs
+You can use this include file to slice and dice your publications in several different ways by passing different parameters. All parameters are optional. Parameters can be used together - when used together, they implicitly have an AND relationship.
 
 | Include Parameter | Description |
 | :----------------- | :----------- |
@@ -21,6 +20,8 @@ You can use this include file to slice and dice your publications in several dif
 | `searchterm` | Return publications based on whether or not the title contains a specific term. |
 
 <br/>
+
+# Examples
 
 ## Include all publications
 To include every single publication in your csv file, use:
