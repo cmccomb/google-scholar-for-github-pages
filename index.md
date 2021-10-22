@@ -15,9 +15,9 @@ You can use this include file to slice and dice your publications in several dif
 
 | Include Parameter | Description |
 | :----------------- | :----------- |
-| `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`) |
-| `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`) |
-| `searchterm` | Return publications based on whether or not the title contains a specific term. |
+| `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`). Matching is not case sensitive. |
+| `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`). |
+| `searchterm` | Return publications based on whether or not the title contains a specific term. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="kleenex;tissue"`). Matching is not case sensitive. |
 
 <br/>
 
@@ -41,7 +41,7 @@ To include every single publication in your csv file, use:
 To include publications in specific venues, pass the `venue` variable to the include. You can pass in multiple venues separated by semi-colons.
 
 ```liquid
-{% raw %}{% include publications venue="Journal of Mechanical Design;Design Studies" %}{% endraw %}
+{% raw %}{% include publications venue="Journal of Mechanical Design;design studies" %}{% endraw %}
 ```
 
 <details>
@@ -69,12 +69,12 @@ To include publications from specific years, pass the `year` variable to the inc
 To include publications with a specific term in the title, pass the `searchterm` variable to the include. The search term is not case sensitive.
 
 ```liquid
-{% raw %}{% include publications searchterm="additive" %}{% endraw %}
+{% raw %}{% include publications searchterm="additive;startup" %}{% endraw %}
 ```
 
 <details>
 <summary><i>Example output</i></summary>
-{% include publications searchterm="additive" %}
+{% include publications searchterm="additive;startup" %}
 </details>
 <br/>
 
