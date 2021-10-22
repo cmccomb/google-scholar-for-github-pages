@@ -86,12 +86,12 @@ To include publications with a specific term in the title, pass the `searchterm`
 To include publications by specific authors, pass the `author` variable to the include. The search term is not case sensitive.
 
 ```liquid
-{% raw %}{% include publications author="sakthi;defranco" %}{% endraw %}
+{% raw %}{% include publications author="prakash;defranco" %}{% endraw %}
 ```
 
 <details>
 <summary><i>Example output</i></summary>
-{% include publications author="sakthi;defranco" %}
+{% include publications author="prakash;defranco" %}
 </details>
 <br/>
 
