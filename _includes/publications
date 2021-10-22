@@ -66,14 +66,42 @@
   {% endif %}
 
   {% if is_venue and is_year and is_search and is_author %}
+    
     {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
     {% assign size = citation.Authors | size | minus: 2 %}
     {% assign pub_authors = citation.Authors | slice: 0, size | split: ";" %}
-    {% if style == "chicago" %}
+    {% assign last_names = "" %}
+    {% assign first_names = "" %}
+    
+    {% if style == "mla" %}
+    {% elseif style == "apa" %}
+    {% elseif style == "chicago" %}
+    {% elseif style == "harvard" %}
+    {% elseif style == "apa" %}
+    {% endif %}
+    
+    {% if style == "mla" %}
       <li>
         {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
+    {% elseif style == "apa" %}  
+      <li>
+        {{ pub_authors | array_to_sentence_string: "&"}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+      </li>
+    {% elseif style == "chicago" %}
+      <li>
+        {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+      </li>
+    {% elseif style == "harvard" %}
+      <li>
+        {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+      </li>
+    {% elseif style == "apa" %}
+      <li>
+        {{ pub_authors | join: ", "}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+      </li>
     {% endif %}
+    
   {% endif %}
 {% endfor %}
 </ol>
