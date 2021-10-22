@@ -16,6 +16,7 @@ You can use this include file to slice and dice your publications in several dif
 1. All parameters are optional. 
 2. Parameters can also be used together - when used together, they implicitly have an AND relationship.
 3. All parameters should be specified as strings.
+
 | Include Parameter | Description |
 | ----------------- | ----------- |
 | `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `"Journal of Vogon Poetry;Journal of Underwater Basketweaving"` |
