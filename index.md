@@ -4,14 +4,23 @@ title: Google Scholar for GitHub Pages
 ---
 
 # How to use
-1. Go to your google scholar page and select all of your publications. Then select the option to export a CSV. ![](/assets/images/export-csv.png)
-2. Next, make sure that you download all of your publications. ![](/assets/images/export-all.png)
-3. Upload this file to `_data/` directory in your Github Pages repository. It must be named `citations.csv`. Sometimes there is an extra character at the beginning of the first line of the CSV. You should remove this.
-4. Download the [publications](https://github.com/cmccomb/google-scholar-for-github-pages/blob/main/_includes/publications) include file and upload it to the `_includes/` directory in your in your Github Pages repository.
+This is a Jekyll include file that pulls from a Google Scholar csv file to output and format your references. Using it is pretty simple!
+1. Download your Google Scholar publications in a csv. Make sure you get all of them.
+2. Upload that csv file to the `_data/` directory of your site directory and make sure its named `citations.csv`.
+3. Download the `publications` include file from this repository ([here](https://github.com/cmccomb/google-scholar-for-github-pages/blob/main/_includes/publications)).
+4. Upload that file to the `_includes/` directory of your site.
 5. You're ready to go! See below for some different use cases. 
 
 # Examples
 You can use this include file to slice and dice your publications in several different ways. 
+1. All parameters are optional. 
+2. Parameters can also be used together - when used together, they implicitly have an AND relationship.
+3. All parameters should be specified as strings.
+| Include Parameter | Description |
+| ----------------- | ----------- |
+| `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `"Journal of Vogon Poetry;Journal of Underwater Basketweaving"` |
+| `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `"2014;2015"` |
+| `searchterm` | Return publications based on whether or not the title contains a specific term. |
 
 ## Include all publications
 To include every single publication in your csv file, use:
