@@ -15,9 +15,11 @@ You can use this include file to slice and dice your publications in several dif
 
 | Include Parameter | Description |
 | :----------------- | :----------- |
+| `author` | Return publications based on an author search. This uses substring matching, so providing last name only will work. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="Einstein;Lovelace"`). Matching is not case sensitive. |
+| `searchterm` | Return publications based on whether or not the title contains a specific term. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="kleenex;tissue"`). Matching is not case sensitive. |
 | `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`). Matching is not case sensitive. |
 | `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`). |
-| `searchterm` | Return publications based on whether or not the title contains a specific term. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="kleenex;tissue"`). Matching is not case sensitive. |
+
 
 <br/>
 
@@ -75,6 +77,21 @@ To include publications with a specific term in the title, pass the `searchterm`
 <details>
 <summary><i>Example output</i></summary>
 {% include publications searchterm="additive;startup" %}
+</details>
+<br/>
+
+
+
+## Include publications by specific authors
+To include publications by specific authors, pass the `author` variable to the include. The search term is not case sensitive.
+
+```liquid
+{% raw %}{% include publications author="sakthi;defranco" %}{% endraw %}
+```
+
+<details>
+<summary><i>Example output</i></summary>
+{% include publications author="sakthi;defranco" %}
 </details>
 <br/>
 
