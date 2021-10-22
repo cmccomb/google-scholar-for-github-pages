@@ -18,16 +18,17 @@ You can use this include file to slice and dice your publications in several dif
 3. All parameters should be specified as strings.
 
 | Include Parameter | Description |
-| ----------------- | ----------- |
+| :----------------- | :----------- |
 | `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `"Journal of Vogon Poetry;Journal of Underwater Basketweaving"`) |
 | `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `"2014;2015"`) |
 | `searchterm` | Return publications based on whether or not the title contains a specific term. |
 
 ## Include all publications
 To include every single publication in your csv file, use:
-{% raw %}
-{% include publications %}
-{% endraw %}
+
+```liquid
+{% raw %}{% include publications %}{% endraw %}
+```
 
 <details>
 <summary><i>Example output</i></summary>
@@ -51,9 +52,10 @@ To include publications in specific venues, pass the `venue` variable to the inc
 
 ## Include publications from specific years
 To include publications from specific years, pass the `year` variable to the include. You can pass in multiple years separated by semi-colons.
-{% raw %}
-{% include publications year="2014;2015" %}
-{% endraw %}
+
+```liquid
+{% raw %}{% include publications year="2014;2015" %}{% endraw %}
+```
 
 <details>
 <summary><i>Example output</i></summary>
@@ -65,9 +67,10 @@ To include publications from specific years, pass the `year` variable to the inc
 
 ## Include publications with a specific term in the title
 To include publications with a specific term in the title, pass the `searchterm` variable to the include. The search term is not case sensitive.
-{% raw %}
-{% include publications searchterm="additive" %}
-{% endraw %}
+
+```liquid
+{% raw %}{% include publications searchterm="additive" %}{% endraw %}
+```
 
 <details>
 <summary><i>Example output</i></summary>
@@ -77,9 +80,10 @@ To include publications with a specific term in the title, pass the `searchterm`
 
 ## Throwing it all together
 The best part is that all of these options play nicely together! For instance, to get all publications from years 2015 OR 2016 in the venues Journal of Mechanical Design OR Design Studies, use this command:
-{% raw %}
-{% include publications year="2015;2016" venue="Journal of Mechanical Design;Design Studies"%}
-{% endraw %}
+
+```liquid
+{% raw %}{% include publications year="2015;2016" venue="Journal of Mechanical Design;Design Studies"%}{% endraw %}
+```
 
 <details>
 <summary><i>Example output</i></summary>
