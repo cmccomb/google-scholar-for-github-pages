@@ -12,16 +12,14 @@ This is a Jekyll include file that pulls from a Google Scholar csv file to outpu
 5. You're ready to go! See below for some different use cases. 
 
 # Examples
-You can use this include file to slice and dice your publications in several different ways. 
-1. All parameters are optional. 
-2. Parameters can also be used together - when used together, they implicitly have an AND relationship.
-3. All parameters should be specified as strings.
+You can use this include file to slice and dice your publications in several different ways by passing different parameters. All parameters are optional. Parameters can also be used together - when used together, they implicitly have an AND relationship. All parameters should be specified as strings.
 
 | Include Parameter | Description |
 | :----------------- | :----------- |
-| `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `"Journal of Vogon Poetry;Journal of Underwater Basketweaving"`) |
-| `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `"2014;2015"`) |
+| `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`) |
+| `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`) |
 | `searchterm` | Return publications based on whether or not the title contains a specific term. |
+<br/>
 
 ## Include all publications
 To include every single publication in your csv file, use:
