@@ -60,7 +60,7 @@ To include publications with a specific term in the title, pass the `searchterm`
 
 <details>
 <summary><i>Example output</i></summary>
-{% include publications year="2014;2015" %}
+{% include publications searchterm="additive" %}
 </details>
 <br/>
 
