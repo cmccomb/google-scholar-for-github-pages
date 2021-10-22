@@ -74,29 +74,29 @@
     {% assign first_names = "" %}
     
     {% if style == "mla" %}
-    {% elseif style == "apa" %}
-    {% elseif style == "chicago" %}
-    {% elseif style == "harvard" %}
-    {% elseif style == "apa" %}
+    {% elsif style == "apa" %}
+    {% elsif style == "chicago" %}
+    {% elsif style == "harvard" %}
+    {% elsif style == "apa" %}
     {% endif %}
     
     {% if style == "mla" %}
       <li>
         {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
-    {% elseif style == "apa" %}  
+    {% elsif style == "apa" %}  
       <li>
         {{ pub_authors | array_to_sentence_string: "&"}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
-    {% elseif style == "chicago" %}
+    {% elsif style == "chicago" %}
       <li>
         {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
-    {% elseif style == "harvard" %}
+    {% elsif style == "harvard" %}
       <li>
         {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
-    {% elseif style == "apa" %}
+    {% elsif style == "apa" %}
       <li>
         {{ pub_authors | join: ", "}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
