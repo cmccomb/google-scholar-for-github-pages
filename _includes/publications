@@ -8,6 +8,11 @@
   {% assign years = include.year | split: ";" %}
 {% endif %}
 
+
+{% if include.searchterm %}
+  {% assign searchterm = include.searchterm %}
+{% endif %}
+
 <ol>
 {% for citation in pub_list %}
   {% if include.venue %}
@@ -29,8 +34,18 @@
   {% else %}
     {% assign is_year = true %}
   {% endif %}
+  
+  {% if include.searchterm %}
+    {% if citation.Title contains searchterm %}
+      {% assign is_search = true %}
+    {% else %}
+      {% assign is_search = false %}
+    {% endif %}
+  {% else %}
+    {% assign is_search = true %}
+  {% endif %}
 
-  {% if is_venue and is_year %}
+  {% if is_venue and is_year and is_search %}
     <li>
       {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
       {% assign size = citation.Authors | size | minus: 2 %}
