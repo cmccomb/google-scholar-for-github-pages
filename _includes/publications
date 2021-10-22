@@ -55,7 +55,6 @@
   {% if include.author %}
     {% assign author_list = citation.Authors | downcase %}
     {% assign is_author = false %}
-    <li>{{ author_list }}, {{authors}}</li>
     {% for author in authors %}
       {% if author_list contains author %}
         {% assign is_author = true %}
