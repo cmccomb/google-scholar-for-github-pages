@@ -1,7 +1,7 @@
 {% assign pub_list = site.data.citations | sort: "Year" | reverse %}
 
 {% if include.venue %}
-  {% assign venues = include.venue | split: ";" %}
+  {% assign venues = include.venue | downcase | split: ";" %}
 {% endif %}
 
 {% if include.year %}
@@ -16,7 +16,8 @@
 <ol>
 {% for citation in pub_list %}
   {% if include.venue %}
-    {% if venues contains citation.Publication %}
+    {% assign publication = citation.Publication | downcase %}
+    {% if venues contains publication %}
       {% assign is_venue = true %}
     {% else %}
       {% assign is_venue = false %}
