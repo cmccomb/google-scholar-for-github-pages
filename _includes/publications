@@ -8,10 +8,14 @@
   {% assign years = include.year | split: ";" %}
 {% endif %}
 
-
 {% if include.searchterm %}
   {% assign searchterms = include.searchterm | downcase | split: ";" %}
 {% endif %}
+
+{% if include.author %}
+  {% assign authors = include.author | downcase | split: ";" %}
+{% endif %}
+
 
 <ol>
 {% for citation in pub_list %}
@@ -47,8 +51,20 @@
   {% else %}
     {% assign is_search = true %}
   {% endif %}
+  
+  {% if include.author %}
+    {% assign author_list = citation.Authors | downcase %}
+    {% assign is_author = false %}
+    {% for author in authors %}
+      {% if author_list contains author %}
+        {% assign is_author = true %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% assign is_author = true %}
+  {% endif %}
 
-  {% if is_venue and is_year and is_search %}
+  {% if is_venue and is_year and is_search and is_author %}
     <li>
       {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
       {% assign size = citation.Authors | size | minus: 2 %}
