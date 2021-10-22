@@ -10,7 +10,7 @@
 
 
 {% if include.searchterm %}
-  {% assign searchterm = include.searchterm %}
+  {% assign searchterm = include.searchterm | downcase %}
 {% endif %}
 
 <ol>
@@ -36,7 +36,8 @@
   {% endif %}
   
   {% if include.searchterm %}
-    {% if citation.Title contains searchterm %}
+    {% assign title = citation.Title | downcase %}
+    {% if title contains searchterm %}
       {% assign is_search = true %}
     {% else %}
       {% assign is_search = false %}
