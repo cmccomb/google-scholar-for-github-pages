@@ -38,9 +38,10 @@ To include every single publication in your csv file, use:
   
 ## Include publications from specific venues
 To include publications in specific venues, pass the `venue` variable to the include. You can pass in multiple venues separated by semi-colons.
-{% raw %}
-{% include publications venue="Journal of Mechanical Design;Design Studies" %}
-{% endraw %}
+
+```liquid
+{% raw %}{% include publications venue="Journal of Mechanical Design;Design Studies" %}{% endraw %}
+```
 
 <details>
 <summary><i>Example output</i></summary>
