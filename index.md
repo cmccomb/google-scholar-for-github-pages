@@ -19,6 +19,7 @@ You can use this include file to slice and dice your publications in several dif
 | `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`) |
 | `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`) |
 | `searchterm` | Return publications based on whether or not the title contains a specific term. |
+
 <br/>
 
 ## Include all publications
