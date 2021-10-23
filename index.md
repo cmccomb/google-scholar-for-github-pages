@@ -3,16 +3,6 @@ layout: default
 title: Google Scholar for GitHub Pages
 ---
 
-<ol>
-{% for citation in site.data.citations %}
-  <li>
-    {% for element in site.data.citations[forloop.index0] limit:1 %}
-      {{ element[1] }}, 
-    {% endfor %}
-  </li>
-{% endfor %}
-</ol>
-  
 # Setup
 1. Download your Google Scholar publications in a csv. Make sure you get all of them.
 2. Upload that csv file to the `_data/` directory of your site directory and make sure its named `citations.csv`.
