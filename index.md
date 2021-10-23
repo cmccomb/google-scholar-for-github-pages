@@ -13,7 +13,7 @@ title: Google Scholar for GitHub Pages
 # Inputs
 You can use this include file to slice and dice your publictions in several different ways by passing different parameters. All parameters are optional. Parameters can be used together - when used together, they implicitly have an AND relationship. Results are always shown with the most recent first. 
 
-| Include Parameter | Type | Default &nbsp; | Description |
+| Include Parameter | Type | Default | Description |
 | :---------------- | :--- | :------ | :---------- |
 | `author` | `String` |  | Return publications based on an author search. This uses substring matching, so providing last name only will work. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="Einstein;Lovelace"`). Matching is not case sensitive. |
 | `limit` | `Number` |  | The maximum number of publications to show. If you don't set this value then all publications that match the criteria will be provided. 
