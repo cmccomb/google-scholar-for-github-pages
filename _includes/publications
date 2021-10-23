@@ -104,12 +104,12 @@
       {% endfor %}
     {% elsif style == "apa" %}
     {% elsif style == "harvard" %}
-    {% elsif style == "apa" %}
+    {% elsif style == "vancouver" %}
     {% endif %}
     
     {% if style == "mla" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em> ({{citation.Year}}).
       </li>
     {% elsif style == "apa" %}  
       <li>
@@ -117,11 +117,11 @@
       </li>
     {% elsif style == "chicago" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em> ({{citation.Year}}).
       </li>
     {% elsif style == "harvard" %}
       <li>
-        {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
+        {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em> ({{citation.Year}}).
       </li>
     {% elsif style == "apa" %}
       <li>
