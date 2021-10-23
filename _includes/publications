@@ -1,6 +1,6 @@
 {% assign pub_list = site.data.citations | sort: "Year" | reverse %}
 {% assign style = include.style | downcase | default: "apa" %}
-{% assign include_link = include.link | default: true %}
+{% assign include_link = include.link %}
 
 {% if include.venue %}
   {% assign venues = include.venue | downcase | split: ";" %}
