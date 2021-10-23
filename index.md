@@ -5,7 +5,11 @@ title: Google Scholar for GitHub Pages
 
 <ol>
 {% for citation in site.data.citations %}
-  <li>{{ citation[0] }}</li>
+  <li>
+    {% for element in citations %}
+      {{ element }}
+    {% endfor %}
+  </li>
 {% endfor %}
 </ol>
   
