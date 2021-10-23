@@ -5,7 +5,7 @@ title: Google Scholar for GitHub Pages
 
 <ol>
 {% for column in site.data.citations[0] %}
-  <li>{{column[0]}}</li>
+  <li>{{column[0] | slice: 0}}</li>
 {% endfor %}
 </ol>
 # Setup
