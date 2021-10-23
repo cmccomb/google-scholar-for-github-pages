@@ -13,14 +13,15 @@ title: Google Scholar for GitHub Pages
 # Inputs
 You can use this include file to slice and dice your publictions in several different ways by passing different parameters. All parameters are optional. Parameters can be used together - when used together, they implicitly have an AND relationship. Results are always shown with the most recent first. 
 
-| Include Parameter | Description |
-| :----------------- | :----------- |
-| `author` | Return publications based on an author search. This uses substring matching, so providing last name only will work. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="Einstein;Lovelace"`). Matching is not case sensitive. |
-| `limit` | The maximum number of publications to show. If you don't set this value then all publications that match the criteria will be provided. 
-| `searchterm` | Return publications based on whether or not the title contains a specific term. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="kleenex;tissue"`). Matching is not case sensitive. |
-| `style` | Set's the citation style for the include. Valid input are `apa`, `mla`, `chicago`, `vancouver`, and `harvard`. Default value is `apa`. |
-| `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`). Matching is not case sensitive. |
-| `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`). |
+| Include Parameter | Type | Default | Description |
+| :---------------- | :--- | :------ | :---------- |
+| `author` | `String` |  | Return publications based on an author search. This uses substring matching, so providing last name only will work. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="Einstein;Lovelace"`). Matching is not case sensitive. |
+| `limit` | `Number` |  | The maximum number of publications to show. If you don't set this value then all publications that match the criteria will be provided. 
+| `link` | `Boolean` | `true` | Indicates whether or not a link should be added to the title. |
+| `searchterm` | `String` |   | Return publications based on whether or not the title contains a specific term. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="kleenex;tissue"`). Matching is not case sensitive. |
+| `style` | `String` | `apa` | Set's the citation style for the include. Valid input are `apa`, `mla`, `chicago`, `vancouver`, and `harvard`. Default value is `apa`. |
+| `venue` | `String` |   | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`). Matching is not case sensitive. |
+| `year` | `String` |   | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`). |
 
 
 <br/>
