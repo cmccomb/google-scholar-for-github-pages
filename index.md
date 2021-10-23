@@ -120,7 +120,7 @@ To include publications by specific authors, pass the `style` variable to the in
 
 <details>
 <summary><i>Example output</i></summary>
-{% include publications style="mla" %}
+{% include publications style="mla" limit=1 %}
 </details>
 <br/>
 
