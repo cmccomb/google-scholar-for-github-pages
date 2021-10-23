@@ -143,6 +143,27 @@ To include publications by specific authors, pass the `style` variable to the in
 
 
 
+## Link
+To turn off the title link, pass `link=false` to the include.
+
+```liquid
+{% raw %}{% include publications link=false %}{% endraw %}
+```
+
+<details>
+<summary><i>Example output</i></summary>
+  <ul>
+    <li> With link
+      {% include publications limit=1 %}      
+    </li>
+    <li> Without link
+      {% include publications link=false limit=1 %}
+    </li>
+  </ul>
+</details>
+<br/>
+
+
 
 ## Throwing it all together
 The best part is that all of these options play nicely together! For instance, to get all publications from years 2015 OR 2016 in the venues Journal of Mechanical Design OR Design Studies, use this command:
