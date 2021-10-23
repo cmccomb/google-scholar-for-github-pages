@@ -2,8 +2,6 @@
 {% assign style = include.style | downcase | default: "apa" %}
 {% assign include_link = include.link %}
 
-{{ clean_author_list }}
-
 {% if include.venue %}
   {% assign venues = include.venue | downcase | split: ";" %}
 {% endif %}
