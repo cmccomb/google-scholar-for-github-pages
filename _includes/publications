@@ -129,11 +129,11 @@
       </li>
     {% elsif style == "harvard" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em> ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}, {{citation.Year}}. <a href="{{ url }}">{{citation.Title}}</a>. <em>{{citation.Publication}}</em>.
       </li>
     {% elsif style == "vancouver" %}
       <li>
-        {{ formatted_author_list | split: ";" | join: ", " }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | join: ", " }} <a href="{{ url }}">{{citation.Title}}</a>. {{citation.Publication}}. ({{citation.Year}}).
       </li>
     {% endif %}
     
