@@ -17,7 +17,7 @@ You can use this include file to slice and dice your publictions in several diff
 | :---------------- | :--- | :------ | :---------- |
 | `author` | `String` |  | Return publications based on an author search. This uses substring matching, so providing last name only will work. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="Einstein;Lovelace"`). Matching is not case sensitive. |
 | `limit` | `Number` |  | The maximum number of publications to show. If you don't set this value then all publications that match the criteria will be provided. 
-| `link` | `Boolean` | `true` | Indicates whether or not a link should be added to the title. |
+| `link` | `Boolean` | `false` | Indicates whether or not a link should be added to the title. The link directs to a Google Scholar search for the title of the publication. |
 | `searchterm` | `String` |   | Return publications based on whether or not the title contains a specific term. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="kleenex;tissue"`). Matching is not case sensitive. |
 | `style` | `String` | `apa` | Set's the citation style for the include. Valid input are `apa`, `mla`, `chicago`, `vancouver`, and `harvard`. Default value is `apa`. |
 | `venue` | `String` |   | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`). Matching is not case sensitive. |
@@ -144,10 +144,10 @@ To include publications by specific authors, pass the `style` variable to the in
 
 
 ## Link
-To turn off the title link, pass `link=false` to the include.
+To turn on the title link, pass `link=true` to the include.
 
 ```liquid
-{% raw %}{% include publications link=false %}{% endraw %}
+{% raw %}{% include publications link=true %}{% endraw %}
 ```
 
 <details>
@@ -157,7 +157,7 @@ To turn off the title link, pass `link=false` to the include.
       {% include publications limit=1 %}      
     </li>
     <li> Without link
-      {% include publications link=false limit=1 %}
+      {% include publications link=true limit=1 %}
     </li>
   </ul>
 </details>
