@@ -18,6 +18,7 @@ You can use this include file to slice and dice your publictions in several diff
 | `author` | Return publications based on an author search. This uses substring matching, so providing last name only will work. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="Einstein;Lovelace"`). Matching is not case sensitive. |
 | `limit` | The maximum number of publications to show. If you don't set this value then all publications that match the criteria will be provided. 
 | `searchterm` | Return publications based on whether or not the title contains a specific term. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="kleenex;tissue"`). Matching is not case sensitive. |
+| `style` | Set's the citation style for the include. Valid input are `apa`, `mla`, `chicago`, `vancouver`, and `harvard`. Default value is `apa`. |
 | `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`). Matching is not case sensitive. |
 | `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`). |
 
@@ -108,6 +109,23 @@ To include publications by specific authors, pass the `author` variable to the i
 {% include publications author="prakash;defranco" %}
 </details>
 <br/>
+
+
+## Citation Style
+To include publications by specific authors, pass the `style` variable to the include.
+
+```liquid
+{% raw %}{% include publications style="mla" %}{% endraw %}
+```
+
+<details>
+<summary><i>Example output</i></summary>
+{% include publications style="mla" %}
+</details>
+<br/>
+
+
+
 
 ## Throwing it all together
 The best part is that all of these options play nicely together! For instance, to get all publications from years 2015 OR 2016 in the venues Journal of Mechanical Design OR Design Studies, use this command:
