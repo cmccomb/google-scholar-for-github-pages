@@ -17,6 +17,8 @@
   {% assign authors = include.author | downcase | split: ";" %}
 {% endif %}
 
+{% assign counter = 0 %}
+
 
 <ol>
 {% for citation in pub_list %}
@@ -66,7 +68,7 @@
   {% endif %}
 
   {% if is_venue and is_year and is_search and is_author %}
-    
+  
     {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
     {% assign size = citation.Authors | size | minus: 2 %}
     {% assign pub_authors = citation.Authors | slice: 0, size | split: ";" %}
@@ -126,6 +128,13 @@
         {{ pub_authors | join: ", "}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
     {% endif %}
+    
+    {% if include.number %}
+      {% assign counter = counter | plus: 1 %}
+      {% if counter == include.number %}
+        {% break %}
+      {% endif %}
+    {% endif %} 
     
   {% endif %}
 {% endfor %}
