@@ -129,9 +129,9 @@
       </li>
     {% endif %}
     
-    {% if include.number %}
+    {% if include.limit %}
       {% assign counter = counter | plus: 1 %}
-      {% if counter == include.number %}
+      {% if counter == include.limit %}
         {% break %}
       {% endif %}
     {% endif %} 
