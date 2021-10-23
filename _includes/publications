@@ -78,7 +78,7 @@
       {% assign first_last = name | split: "," %}
       {% assign first_names = first_names | append: first_last[1] %}
       {% assign last_names = last_names | append: first_last[0] %}
-      {% if forloop.last = false %}
+      {% if forloop.last == false %}
         {% assign last_names = last_names | append: ";" %}
         {% assign first_names = first_names | append: ";" %}
       {% endif %}
