@@ -86,19 +86,28 @@
     {% assign first_names = first_names | split: ";" %}
     {% assign last_names = last_names | split: ";" %}
 
-   <li>{{first_names}}</li>
-   <li>{{last_names}}</li>
-
-    {% if style == "mla" %}
+   
+    {% if style == "mla" or style == "chicago" %}
+      {% assign formatted_author_list = "" %}
+      {% for first_name in first_names %}
+        {% if forloop.first == true %} 
+          {% assign formatted_author_list = formatted_author_list | append: last_names[forloop.index0] | append: ", " | append: first_name | append: ";" %}
+        {% if forloop.first == true and forloop.last == true %}
+          {% assign formatted_author_list = formatted_author_list | append: last_names[forloop.index0] | append: ", " | append: first_name %}
+        {% elsif forloop.last == true %}
+          {% assign formatted_author_list = formatted_author_list | append: first_name | append: " " | append: last_names[forloop.index0] %}
+        {% else %}
+          {% assign formatted_author_list = formatted_author_list | append: last_names[forloop.index0] | append: ", " | append: first_name | append: ";" %}
+        {% endif %}
+      {% endfor %}
     {% elsif style == "apa" %}
-    {% elsif style == "chicago" %}
     {% elsif style == "harvard" %}
     {% elsif style == "apa" %}
     {% endif %}
     
     {% if style == "mla" %}
       <li>
-        {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
     {% elsif style == "apa" %}  
       <li>
@@ -106,7 +115,7 @@
       </li>
     {% elsif style == "chicago" %}
       <li>
-        {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
       </li>
     {% elsif style == "harvard" %}
       <li>
