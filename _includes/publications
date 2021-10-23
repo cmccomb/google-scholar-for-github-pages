@@ -1,5 +1,6 @@
 {% assign pub_list = site.data.citations | sort: "Year" | reverse %}
 {% assign style = include.style | default: "apa" %}
+{% assign include_link = include.link | default: true %}
 
 {% if include.venue %}
   {% assign venues = include.venue | downcase | split: ";" %}
@@ -69,7 +70,6 @@
 
   {% if is_venue and is_year and is_search and is_author %}
   
-    {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
     {% assign size = citation.Authors | size | minus: 2 %}
     {% assign pub_authors = citation.Authors | slice: 0, size | split: ";" %}
 
@@ -115,25 +115,32 @@
       {% endfor %}
     {% endif %}
     
+    {% if include_link==true %}
+      {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
+      {% capture title_link %}<a href="{{ url }}">{{citation.Title}}</a>{% endcapture %}
+    {% else %}
+      {% assign title_link = citation.Title %}
+    {% endif %}
+    
     {% if style == "mla" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em> ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "{{ title_link }}." <em>{{citation.Publication}}</em> ({{citation.Year}}).
       </li>
     {% elsif style == "apa" %}  
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string: "&"}} ({{citation.Year}}). <a href="{{ url }}">{{citation.Title}}</a>. <em>{{citation.Publication}}</em>.
+        {{ formatted_author_list | split: ";" | array_to_sentence_string: "&"}} ({{citation.Year}}). {{ title_link }}. <em>{{citation.Publication}}</em>.
       </li>
     {% elsif style == "chicago" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em> ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "{{ title_link }}." <em>{{citation.Publication}}</em> ({{citation.Year}}).
       </li>
     {% elsif style == "harvard" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}, {{citation.Year}}. <a href="{{ url }}">{{citation.Title}}</a>. <em>{{citation.Publication}}</em>.
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}, {{citation.Year}}. {{ title_link }}. <em>{{citation.Publication}}</em>.
       </li>
     {% elsif style == "vancouver" %}
       <li>
-        {{ formatted_author_list | split: ";" | join: ", " }}. <a href="{{ url }}">{{citation.Title}}</a>. {{citation.Publication}}. {{citation.Year}}.
+        {{ formatted_author_list | split: ";" | join: ", " }}. {{ title_link }}. {{citation.Publication}}. {{citation.Year}}.
       </li>
     {% endif %}
     
