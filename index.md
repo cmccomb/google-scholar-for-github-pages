@@ -5,6 +5,7 @@ title: Google Scholar for GitHub Pages
 
 <ol>
 {% for citation in site.data.citations %}
+  <li> site.data.citations]forloop.index0][0][1] </li>
   <li>
     {% for element in site.data.citations[forloop.index0] %}
       {{ element[1] }}, 
