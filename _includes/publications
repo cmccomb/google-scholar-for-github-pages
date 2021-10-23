@@ -70,9 +70,25 @@
     {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
     {% assign size = citation.Authors | size | minus: 2 %}
     {% assign pub_authors = citation.Authors | slice: 0, size | split: ";" %}
+
+
     {% assign last_names = "" %}
     {% assign first_names = "" %}
-    
+    {% for name in pub_authors %}
+      {% assign first_last = name | split: "," %}
+      {% assign first_names = first_names | append: first_last[1] %}
+      {% assign last_names = last_names | append: first_last[0] %}
+      {% if forloop.last = false %}
+        {% assign last_names = last_names | append: ";" %}
+        {% assign first_names = first_names | append: ";" %}
+      {% endif %}
+    {% endfor %}
+    {% assign first_names = first_names | split: ";" %}
+    {% assign last_names = last_names | split: ";" %}
+
+   <li>{{first_names}}</li>
+   <li>{{last_names}}</li>
+
     {% if style == "mla" %}
     {% elsif style == "apa" %}
     {% elsif style == "chicago" %}
