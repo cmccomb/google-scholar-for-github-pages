@@ -109,23 +109,23 @@
     
     {% if style == "mla" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
       </li>
     {% elsif style == "apa" %}  
       <li>
-        {{ pub_authors | array_to_sentence_string: "&"}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+        {{ pub_authors | array_to_sentence_string: "&"}}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
       </li>
     {% elsif style == "chicago" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
       </li>
     {% elsif style == "harvard" %}
       <li>
-        {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+        {{ pub_authors | array_to_sentence_string}}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
       </li>
     {% elsif style == "apa" %}
       <li>
-        {{ pub_authors | join: ", "}}. "<a href="{{ url }}">{{citation.Title}}</a>." <i>{{citation.Publication}}</i>, ({{citation.Year}}).
+        {{ pub_authors | join: ", "}}. "<a href="{{ url }}">{{citation.Title}}</a>." <em>{{citation.Publication}}</em>, ({{citation.Year}}).
       </li>
     {% endif %}
     
