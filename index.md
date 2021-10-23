@@ -11,11 +11,12 @@ title: Google Scholar for GitHub Pages
 5. You're ready to go! See below for some different use cases. 
 
 # Inputs
-You can use this include file to slice and dice your publications in several different ways by passing different parameters. All parameters are optional. Parameters can be used together - when used together, they implicitly have an AND relationship.
+You can use this include file to slice and dice your publictions in several different ways by passing different parameters. All parameters are optional. Parameters can be used together - when used together, they implicitly have an AND relationship. Results are always shown with the most recent first. 
 
 | Include Parameter | Description |
 | :----------------- | :----------- |
 | `author` | Return publications based on an author search. This uses substring matching, so providing last name only will work. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="Einstein;Lovelace"`). Matching is not case sensitive. |
+| `limit` | The maximum number of publications to show. If you don't set this value then all publications that match the criteria will be provided. 
 | `searchterm` | Return publications based on whether or not the title contains a specific term. You can provide multiple terms by separating them with semi-colons in the string (i.e., `searchterm="kleenex;tissue"`). Matching is not case sensitive. |
 | `venue` | Return publications based on the venue (conference, journal, workshop, etc) that they were published in. You can provide multiple venues by separating them with semi-colons in the string (i.e., `venue="Journal of Vogon Poetry;Journal of Underwater Basketweaving"`). Matching is not case sensitive. |
 | `year` | Return publications based on the year they were published. You can provide multiple years by separating them with semi-colons in the string (i.e., `year="2014;2015"`). |
@@ -25,7 +26,7 @@ You can use this include file to slice and dice your publications in several dif
 
 # Examples
 
-## Include all publications
+## All publications
 To include every single publication in your csv file, use:
 
 ```liquid
@@ -38,8 +39,21 @@ To include every single publication in your csv file, use:
 </details>
 <br/>
 
+## Limit on output
+To limit the number of publications provided, add the `limit` variable:
+
+```liquid
+{% raw %}{% include publications limit=10 %}{% endraw %}
+```
+
+<details>
+<summary><i>Example output</i></summary>
+{% include publications limit=10 %}
+</details>
+<br/>
+
   
-## Include publications from specific venues
+## Specific publication venues
 To include publications in specific venues, pass the `venue` variable to the include. You can pass in multiple venues separated by semi-colons.
 
 ```liquid
@@ -52,7 +66,7 @@ To include publications in specific venues, pass the `venue` variable to the inc
 </details>
 <br/>
 
-## Include publications from specific years
+## Specific years
 To include publications from specific years, pass the `year` variable to the include. You can pass in multiple years separated by semi-colons.
 
 ```liquid
@@ -67,7 +81,7 @@ To include publications from specific years, pass the `year` variable to the inc
 
 
 
-## Include publications with a specific term in the title
+## Specific term in the title
 To include publications with a specific term in the title, pass the `searchterm` variable to the include. The search term is not case sensitive.
 
 ```liquid
@@ -82,7 +96,7 @@ To include publications with a specific term in the title, pass the `searchterm`
 
 
 
-## Include publications by specific authors
+## Specific authors
 To include publications by specific authors, pass the `author` variable to the include. The search term is not case sensitive.
 
 ```liquid
