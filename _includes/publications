@@ -104,7 +104,7 @@
       {% endfor %}
     {% elsif style == "apa" or style == "harvard" or style == "vancouver"%}
       {% for first_name in first_names %}
-        {% assign first_initial = first_name | slice: 0 %}
+        {% assign first_initial = first_name | slice: 1 %}
         {% assign formatted_author_list = formatted_author_list | append: last_names[forloop.index0] | append: ", " | append: first_initial %}
         {% if style == "apa" or style == "harvard" %}
           {% assign formatted_author_list = formatted_author_list | append: "." %}
