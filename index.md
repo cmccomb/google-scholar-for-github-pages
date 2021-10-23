@@ -7,7 +7,7 @@ title: Google Scholar for GitHub Pages
 {% for citation in site.data.citations %}
   <li>
     {% for element in site.data.citations[forloop.index0] %}
-      {{ element[0] }}, 
+      {{ element[1] }}, 
     {% endfor %}
   </li>
 {% endfor %}
