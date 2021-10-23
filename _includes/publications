@@ -133,7 +133,7 @@
       </li>
     {% elsif style == "vancouver" %}
       <li>
-        {{ formatted_author_list | split: ";" | join: ", " }} <a href="{{ url }}">{{citation.Title}}</a>. {{citation.Publication}}. ({{citation.Year}}).
+        {{ formatted_author_list | split: ";" | join: ", " }}. <a href="{{ url }}">{{citation.Title}}</a>. {{citation.Publication}}. {{citation.Year}}.
       </li>
     {% endif %}
     
