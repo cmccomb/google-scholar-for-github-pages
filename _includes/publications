@@ -70,8 +70,8 @@
 
   {% if is_venue and is_year and is_search and is_author %}
   
-    {% assign size = citation[0] | size | minus: 2 %}
-    {% assign pub_authors = citation[0] | slice: 0, size | split: ";" %}
+    {% assign size = citation.Authors | size | minus: 2 %}
+    {% assign pub_authors = citation.Authors | slice: 0, size | split: ";" %}
 
 
     {% assign last_names = "" %}
