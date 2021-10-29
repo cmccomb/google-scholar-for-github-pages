@@ -1,4 +1,4 @@
 theme: jekyll-theme-tactile
-show_downloads: False
+show_downloads: True
 author: "Chris McComb"
 title: "Google Scholar for GitHub Pages"
