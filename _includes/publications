@@ -10,8 +10,8 @@
   {% assign years = include.year | split: ";" %}
 {% endif %}
 
-{% if include.searchterm %}
-  {% assign searchterms = include.searchterm | downcase | split: ";" %}
+{% if include.title_search %}
+  {% assign searchterms = include.title_search | downcase | split: ";" %}
 {% endif %}
 
 {% if include.author %}
@@ -44,7 +44,7 @@
     {% assign is_year = true %}
   {% endif %}
   
-  {% if include.searchterm %}
+  {% if include.title_search %}
     {% assign title = citation.Title | downcase %}
     {% assign is_search = false %}
     {% for term in searchterms %}
