@@ -14,6 +14,10 @@
   {% assign searchterms = include.title_search | downcase | split: ";" %}
 {% endif %}
 
+{% if include.venue_search %}
+  {% assign venue_searchterms = include.venue_search | downcase | split: ";" %}
+{% endif %}
+
 {% if include.author %}
   {% assign authors = include.author | downcase | split: ";" %}
 {% endif %}
@@ -56,6 +60,18 @@
     {% assign is_search = true %}
   {% endif %}
   
+  {% if include.venue_search %}
+    {% assign venue = citation.Publication | downcase %}
+    {% assign is_venue_search = false %}
+    {% for term in venue_searchterms %}
+      {% if venue contains term %}
+        {% assign is_venue_search = true %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% assign is_venue_search = true %}
+  {% endif %}
+  
   {% if include.author %}
     {% assign author_list = citation.Authors | downcase %}
     {% assign is_author = false %}
@@ -68,7 +84,7 @@
     {% assign is_author = true %}
   {% endif %}
 
-  {% if is_venue and is_year and is_search and is_author %}
+  {% if is_venue and is_year and is_search and is_author and is_venue_search %}
   
     {% assign size = citation.Authors | size | minus: 2 %}
     {% assign pub_authors = citation.Authors | slice: 0, size | split: ";" %}
