@@ -8,7 +8,7 @@ title: Google Scholar for GitHub Pages
 2. Upload that csv file to the `_data/` directory of your site directory and make sure its named `citations.csv`.
 3. Download the `publications` include file from this repository ([here](https://github.com/cmccomb/google-scholar-for-github-pages/blob/main/_includes/publications)).
 4. Upload that file to the `_includes/` directory of your site.
-5. You're ready to go! See below for some different use cases. If the authors are not showing up, check your csv - sometimes there is a [zero-width no-break space character](https://unicode-table.com/en/FEFF/) at the beginning of the first row. Removing that character should fix things. 
+5. You're ready to go! See below for some different use cases.
 
 # Inputs
 You can use this include file to slice and dice your publictions in several different ways by passing different parameters. All parameters are optional. Parameters can be used together - when used together, they implicitly have an AND relationship. Results are always shown with the most recent first. 
