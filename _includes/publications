@@ -73,7 +73,14 @@
   {% endif %}
   
   {% if include.author %}
-    {% assign author_list = citation.Authors | downcase %}
+    {% capture citation_Authors %}
+      {% for element in citation %}
+        {% if forloop.first %}
+          {{ element[1] }}
+        {% endif %}
+      {% endfor %}
+    {% endcapture %}
+    {% assign author_list = citation_Authors | downcase %}
     {% assign is_author = false %}
     {% for author in authors %}
       {% if author_list contains author %}
