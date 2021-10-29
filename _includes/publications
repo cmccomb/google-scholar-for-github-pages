@@ -85,6 +85,7 @@
   {% endif %}
 
   {% if is_venue and is_year and is_search and is_author and is_venue_search %}
+    [{{ citation }}, {{ citation[0] }} ]
   
     {% assign size = citation.Authors | size | minus: 2 %}
     {% assign pub_authors = citation.Authors | slice: 0, size | split: ";" %}
