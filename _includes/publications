@@ -85,7 +85,11 @@
   {% endif %}
 
   {% if is_venue and is_year and is_search and is_author and is_venue_search %}
-    [ {{ pub_list[0][0] }} ]
+    {% for element in pub_list[0] %}
+      {% if forloop.first %}
+        [{{ element[1] }}]
+      {% endif %}
+    {% endfor %}
   
     {% assign size = citation.Authors | size | minus: 2 %}
     {% assign pub_authors = citation.Authors | slice: 0, size | split: ";" %}
