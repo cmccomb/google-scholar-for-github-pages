@@ -11,7 +11,7 @@ title: Google Scholar for GitHub Pages
 5. You're ready to go! See below for some different use cases.
 
 # Inputs
-You can use this include file to slice and dice your publictions in several different ways by passing different parameters. All parameters are optional. Parameters can be used together - when used together, they implicitly have an AND relationship. Results are always shown with the most recent first. 
+You can use this include file to slice and dice your publications in several different ways by passing different parameters. All parameters are optional. Parameters can be used together - when used together, they implicitly have an AND relationship. Results are always shown with the most recent first. 
 
 | Include Parameter | Type | Default | Description |
 | :---------------- | :--- | :------ | :---------- |
@@ -167,10 +167,10 @@ To turn on the title link, pass `link=true` to the include.
 <summary><i>Example output</i></summary>
   <ul>
     <li> With link
-      {% include publications limit=1 %}      
+      {% include publications link=true limit=1 %}
     </li>
     <li> Without link
-      {% include publications link=true limit=1 %}
+      {% include publications limit=1 %}
     </li>
   </ul>
 </details>
