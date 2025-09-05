@@ -22,7 +22,7 @@
   {% assign venue_searchterms = include.venue_search | downcase | split: ";" %}
 {% endif %}
 
-{% if include.venue_seach_exclude %}
+{% if include.venue_search_exclude %}
   {% assign venue_searchterms_exclude = include.venue_search_exclude | downcase | split: ";" %}
 {% endif %}
 
@@ -91,12 +91,12 @@
     {% assign is_venue_search = true %}
   {% endif %}
   
-  {% if include.venue_search_exclue %}
+  {% if include.venue_search_exclude %}
     {% assign venue = citation.Publication | downcase %}
     {% assign is_venue_search_exclude = true %}
     {% for term in venue_searchterms_exclude %}
       {% if venue contains term %}
-        {% assign is_venue_search_exlude = false %}
+        {% assign is_venue_search_exclude = false %}
       {% endif %}
     {% endfor %}
   {% else %}
