@@ -16,7 +16,7 @@ This is similar to [Jekyll Scholar](https://github.com/inukshuk/jekyll-scholar),
 Run the tests and build the site before publishing changes:
 
 ```bash
-gem install jekyll -v 4.4.1 jekyll-theme-tactile -v 0.2.0
+gem install 'jekyll:4.4.1' 'jekyll-theme-tactile:0.2.0'
 ruby tests/test_publications.rb
 jekyll build
 ```
