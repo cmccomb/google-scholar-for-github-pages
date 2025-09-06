@@ -12,7 +12,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
-      - run: gem install jekyll
+      - run: gem install jekyll -v 4.4.1 jekyll-theme-tactile -v 0.2.0
       - run: ruby tests/test_publications.rb
 
   build:
@@ -23,5 +23,5 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
-      - run: gem install jekyll
+      - run: gem install jekyll -v 4.4.1 jekyll-theme-tactile -v 0.2.0
       - run: jekyll build
