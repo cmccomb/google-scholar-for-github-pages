@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
 
 jobs:
@@ -16,6 +17,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
-      - run: gem install "jekyll:${{ matrix.jekyll }}" 'jekyll-theme-tactile:0.2.0'
+      - run: gem install "jekyll:${{ matrix.jekyll }}" 'jekyll-theme-tactile:0.2.0' 'kramdown-parser-gfm:1.1.0'
       - run: ruby tests/test_publications.rb
       - run: jekyll build
