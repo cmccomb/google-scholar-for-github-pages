@@ -2,6 +2,7 @@
 
 [![CI status](https://img.shields.io/github/actions/workflow/status/cmccomb/google-scholar-for-github-pages/ci.yml?branch=main&label=CI)](https://github.com/cmccomb/google-scholar-for-github-pages/actions/workflows/ci.yml)
 [![Latest release](https://img.shields.io/github/v/release/cmccomb/google-scholar-for-github-pages?label=release)](https://github.com/cmccomb/google-scholar-for-github-pages/releases/latest)
+[![Liquid branch coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcmccomb%2Fgoogle-scholar-for-github-pages%2Fmain%2Fcoverage%2Fliquid-branches-badge.json)](coverage/liquid-branches.json)
 [![MIT license](https://img.shields.io/github/license/cmccomb/google-scholar-for-github-pages)](LICENSE)
 
 Publish a Google Scholar CSV as a formatted, filterable publication list on a Jekyll site. The renderer is a single Liquid include, with no custom Jekyll plugin or browser-side API request. Your CSV remains in your repository, so updates happen when you replace that file and rebuild the site.
@@ -62,6 +63,8 @@ jekyll build
 ```
 
 [GitHub Actions](.github/workflows/ci.yml) tests and builds with Jekyll 3.10, 4.3, and 4.4 on pushes and pull requests. The renderer itself uses only Liquid and Jekyll filters, which keeps it compatible with GitHub Pages' Jekyll builds.
+
+The coverage badge counts exercised paths through the Liquid include's `if`, `unless`, and `for` tags, including implicit `else` and empty-loop paths. It does not measure Ruby lines. Running the tests regenerates the [branch report](coverage/liquid-branches.json); CI checks that the committed report matches.
 
 ## License
 

@@ -19,4 +19,5 @@ jobs:
           ruby-version: '3.1'
       - run: gem install "jekyll:${{ matrix.jekyll }}" 'jekyll-theme-tactile:0.2.0' 'kramdown-parser-gfm:1.1.0'
       - run: ruby tests/test_publications.rb
+      - run: git diff --exit-code -- coverage/liquid-branches.json coverage/liquid-branches-badge.json
       - run: jekyll build
