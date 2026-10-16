@@ -88,4 +88,20 @@ class PublicationsTemplateTest < Minitest::Test
       assert_includes result, 'Test Journal Paper', style
     end
   end
+
+  def test_compact_output_uses_title_year_and_venue
+    result = render('compact' => true, 'link' => true, 'limit' => 1)
+    assert_match(/<li>\s*<a href="https:\/\/scholar\.google\.com\/scholar\?q=/, result)
+    assert_match(/Test Journal Paper<\/a> \(2021\)\. <em>Design Studies<\/em>\./, result)
+    refute_includes result, 'Doe, J.'
+  end
+
+  def test_compact_output_handles_missing_fields_and_escapes_text
+    row = { 'Title' => '<Example>', 'Year' => '2026', 'Publication' => '<Venue>' }
+    result = render({ 'compact' => true }, [row])
+    assert_match(/&lt;Example&gt; \(2026\)\. <em>&lt;Venue&gt;<\/em>\./, result)
+    refute_includes result, '<Example>'
+    refute_includes result, '<Venue>'
+    assert_includes render({}, [row]), '(2026)'
+  end
 end

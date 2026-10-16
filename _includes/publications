@@ -194,7 +194,11 @@
       {% assign title_link = citation.Title | default: "" | escape %}
     {% endif %}
     
-    {% if style == "mla" %}
+    {% if include.compact == true %}
+      <li>
+        {{ title_link }}{% if citation.Year and citation.Year != "" %} ({{ citation.Year | escape }}){% endif %}{% if citation.Publication and citation.Publication != "" %}. <em>{{ citation.Publication | escape }}</em>{% endif %}.
+      </li>
+    {% elsif style == "mla" %}
       <li>
         {% if formatted_author_list != "" %}{{ formatted_author_list | split: ";" | array_to_sentence_string | escape }}. {% endif %}"{{ title_link }}." <em>{{ citation.Publication | default: "" | escape }}</em> ({{ citation.Year | default: "" | escape }}).
       </li>
