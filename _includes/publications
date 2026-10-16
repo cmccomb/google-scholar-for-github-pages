@@ -1,5 +1,8 @@
 {% assign pub_list = site.data.citations | sort: "Year" | reverse %}
 {% assign style = include.style | downcase | default: "apa" %}
+{% unless style == "apa" or style == "mla" or style == "chicago" or style == "harvard" or style == "vancouver" %}
+  {% assign style = "apa" %}
+{% endunless %}
 {% assign include_link = include.link %}
 
 {% if include.venue %}
@@ -35,43 +38,54 @@
 
 <ol>
 {% for citation in pub_list %}
+  {% assign citation_Authors = citation.Authors | default: "" %}
+  {% if citation_Authors == "" %}
+    {% for field in citation %}
+      {% if field[0] contains "Authors" %}
+        {% assign citation_Authors = field[1] %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
   {% if include.venue %}
-    {% assign publication = citation.Publication | downcase %}
-    {% if venues contains publication %}
-      {% assign is_venue = true %}
-    {% else %}
-      {% assign is_venue = false %}
-    {% endif %}
+    {% assign publication = citation.Publication | default: "" | strip | downcase %}
+    {% assign is_venue = false %}
+    {% for term in venues %}
+      {% assign clean_term = term | strip %}
+      {% if clean_term != "" and clean_term == publication %}{% assign is_venue = true %}{% endif %}
+    {% endfor %}
   {% else %}
     {% assign is_venue = true %}
   {% endif %}
   
   {% if include.venue_exclude %}
-    {% assign publication = citation.Publication | downcase %}
-    {% if venues_exclude contains publication %}
-      {% assign is_venue = false %}
-    {% else %}
-      {% assign is_venue = true %}
-    {% endif %}
+    {% assign publication = citation.Publication | default: "" | strip | downcase %}
+    {% assign is_venue_exclude = true %}
+    {% for term in venues_exclude %}
+      {% assign clean_term = term | strip %}
+      {% if clean_term != "" and clean_term == publication %}{% assign is_venue_exclude = false %}{% endif %}
+    {% endfor %}
   {% else %}
-    {% assign is_venue = true %}
+    {% assign is_venue_exclude = true %}
   {% endif %}
   
   {% if include.year %}
-    {% if years contains citation.Year %}
-      {% assign is_year = true %}
-    {% else %}
-      {% assign is_year = false %}
-    {% endif %}
+    {% assign citation_year = citation.Year | default: "" | strip %}
+    {% assign is_year = false %}
+    {% for term in years %}
+      {% assign clean_term = term | strip %}
+      {% if clean_term != "" and clean_term == citation_year %}{% assign is_year = true %}{% endif %}
+    {% endfor %}
   {% else %}
     {% assign is_year = true %}
   {% endif %}
   
   {% if include.title_search %}
-    {% assign title = citation.Title | downcase %}
+    {% assign title = citation.Title | default: "" | downcase %}
     {% assign is_search = false %}
     {% for term in searchterms %}
-      {% if title contains term %}
+      {% assign clean_term = term | strip %}
+      {% if clean_term != "" and title contains clean_term %}
         {% assign is_search = true %}
       {% endif %}
     {% endfor %}
@@ -80,10 +94,11 @@
   {% endif %}
   
   {% if include.venue_search %}
-    {% assign venue = citation.Publication | downcase %}
+    {% assign venue = citation.Publication | default: "" | downcase %}
     {% assign is_venue_search = false %}
     {% for term in venue_searchterms %}
-      {% if venue contains term %}
+      {% assign clean_term = term | strip %}
+      {% if clean_term != "" and venue contains clean_term %}
         {% assign is_venue_search = true %}
       {% endif %}
     {% endfor %}
@@ -92,10 +107,11 @@
   {% endif %}
   
   {% if include.venue_search_exclude %}
-    {% assign venue = citation.Publication | downcase %}
+    {% assign venue = citation.Publication | default: "" | downcase %}
     {% assign is_venue_search_exclude = true %}
     {% for term in venue_searchterms_exclude %}
-      {% if venue contains term %}
+      {% assign clean_term = term | strip %}
+      {% if clean_term != "" and venue contains clean_term %}
         {% assign is_venue_search_exclude = false %}
       {% endif %}
     {% endfor %}
@@ -104,17 +120,11 @@
   {% endif %}
   
   {% if include.author %}
-    {% capture citation_Authors %}
-      {% for element in citation %}
-        {% if forloop.first %}
-          {{ element[1] }}
-        {% endif %}
-      {% endfor %}
-    {% endcapture %}
     {% assign author_list = citation_Authors | downcase %}
     {% assign is_author = false %}
     {% for author in authors %}
-      {% if author_list contains author %}
+      {% assign clean_author = author | strip %}
+      {% if clean_author != "" and author_list contains clean_author %}
         {% assign is_author = true %}
       {% endif %}
     {% endfor %}
@@ -122,28 +132,23 @@
     {% assign is_author = true %}
   {% endif %}
 
-  {% if is_venue and is_year and is_search and is_author and is_venue_search and is_venue_search_exclude %}
-    {% capture citation_Authors %}
-      {% for element in citation %}
-        {% if forloop.first %}
-          {{ element[1] }}
-        {% endif %}
-      {% endfor %}
-    {% endcapture %}
+  {% if is_venue and is_venue_exclude and is_year and is_search and is_author and is_venue_search and is_venue_search_exclude %}
   
-    {% assign size = citation_Authors | size | minus: 2 %}
-    {% assign pub_authors = citation_Authors | slice: 0, size | split: ";" %}
+    {% assign pub_authors = citation_Authors | split: ";" %}
 
 
     {% assign last_names = "" %}
     {% assign first_names = "" %}
     {% for name in pub_authors %}
-      {% assign first_last = name | split: "," %}
-      {% assign first_names = first_names | append: first_last[1] %}
-      {% assign last_names = last_names | append: first_last[0] %}
-      {% if forloop.last == false %}
-        {% assign last_names = last_names | append: ";" %}
-        {% assign first_names = first_names | append: ";" %}
+      {% assign clean_name = name | strip %}
+      {% if clean_name != "" %}
+        {% assign first_last = clean_name | split: "," %}
+        {% if last_names != "" %}
+          {% assign last_names = last_names | append: ";" %}
+          {% assign first_names = first_names | append: ";" %}
+        {% endif %}
+        {% assign first_names = first_names | append: first_last[1] | default: "" %}
+        {% assign last_names = last_names | append: first_last[0] %}
       {% endif %}
     {% endfor %}
     {% assign first_names = first_names | split: ";" %}
@@ -154,18 +159,15 @@
     {% if style == "mla" or style == "chicago" %}
       {% for first_name in first_names %}
         {% if forloop.first == true %} 
-          {% assign formatted_author_list = formatted_author_list | append: last_names[forloop.index0] | append: ", " | append: first_name | append: ";" %}
-        {% elsif forloop.first == true and forloop.last == true %}
-          {% assign formatted_author_list = formatted_author_list | append: last_names[forloop.index0] | append: ", " | append: first_name %}
-        {% elsif forloop.last == true %}
-          {% assign formatted_author_list = formatted_author_list | append: first_name | append: " " | append: last_names[forloop.index0] %}
+          {% assign formatted_author_list = formatted_author_list | append: last_names[forloop.index0] | append: ", " | append: first_name | strip %}
         {% else %}
-          {% assign formatted_author_list = formatted_author_list | append: first_name | append: " " | append: last_names[forloop.index0] | append: ";" %}
+          {% assign formatted_author_list = formatted_author_list | append: first_name | strip | append: " " | append: last_names[forloop.index0] %}
         {% endif %}
+        {% unless forloop.last %}{% assign formatted_author_list = formatted_author_list | append: ";" %}{% endunless %}
       {% endfor %}
     {% elsif style == "apa" or style == "harvard" or style == "vancouver"%}
       {% for first_name in first_names %}
-        {% assign first_initial = first_name | slice: 1 %}
+        {% assign first_initial = first_name | strip | slice: 0, 1 %}
         {% assign formatted_author_list = formatted_author_list | append: last_names[forloop.index0] | append: ", " | append: first_initial %}
         {% if style == "apa" or style == "harvard" %}
           {% assign formatted_author_list = formatted_author_list | append: "." %}
@@ -176,32 +178,41 @@
       {% endfor %}
     {% endif %}
     
-    {% if include_link==true %}
-      {% assign url = citation.Title | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
-      {% capture title_link %}<a href="{{ url }}">{{citation.Title}}</a>{% endcapture %}
+    {% assign doi = citation.DOI | default: "" | strip %}
+    {% assign doi_prefix = doi | slice: 0, 16 | downcase %}
+    {% assign doi_short_prefix = doi | slice: 0, 3 %}
+    {% if doi_prefix == "https://doi.org/" %}
+      {% assign url = doi %}
+    {% elsif doi_short_prefix == "10." %}
+      {% assign url = doi | prepend: "https://doi.org/" %}
     {% else %}
-      {% assign title_link = citation.Title %}
+      {% assign url = citation.Title | default: "" | cgi_escape | prepend: "https://scholar.google.com/scholar?q=" %}
+    {% endif %}
+    {% if include_link == true %}
+      {% capture title_link %}<a href="{{ url | escape }}">{{ citation.Title | default: "" | escape }}</a>{% endcapture %}
+    {% else %}
+      {% assign title_link = citation.Title | default: "" | escape %}
     {% endif %}
     
     {% if style == "mla" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "{{ title_link }}." <em>{{citation.Publication}}</em> ({{citation.Year}}).
+        {% if formatted_author_list != "" %}{{ formatted_author_list | split: ";" | array_to_sentence_string | escape }}. {% endif %}"{{ title_link }}." <em>{{ citation.Publication | default: "" | escape }}</em> ({{ citation.Year | default: "" | escape }}).
       </li>
     {% elsif style == "apa" %}  
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string: "&"}} ({{citation.Year}}). {{ title_link }}. <em>{{citation.Publication}}</em>.
+        {% if formatted_author_list != "" %}{{ formatted_author_list | split: ";" | array_to_sentence_string: "&" | escape }} {% endif %}({{ citation.Year | default: "" | escape }}). {{ title_link }}. <em>{{ citation.Publication | default: "" | escape }}</em>.
       </li>
     {% elsif style == "chicago" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}. "{{ title_link }}." <em>{{citation.Publication}}</em> ({{citation.Year}}).
+        {% if formatted_author_list != "" %}{{ formatted_author_list | split: ";" | array_to_sentence_string | escape }}. {% endif %}"{{ title_link }}." <em>{{ citation.Publication | default: "" | escape }}</em> ({{ citation.Year | default: "" | escape }}).
       </li>
     {% elsif style == "harvard" %}
       <li>
-        {{ formatted_author_list | split: ";" | array_to_sentence_string }}, {{citation.Year}}. {{ title_link }}. <em>{{citation.Publication}}</em>.
+        {% if formatted_author_list != "" %}{{ formatted_author_list | split: ";" | array_to_sentence_string | escape }}, {% endif %}{{ citation.Year | default: "" | escape }}. {{ title_link }}. <em>{{ citation.Publication | default: "" | escape }}</em>.
       </li>
     {% elsif style == "vancouver" %}
       <li>
-        {{ formatted_author_list | split: ";" | join: ", " }}. {{ title_link }}. {{citation.Publication}}. {{citation.Year}}.
+        {% if formatted_author_list != "" %}{{ formatted_author_list | split: ";" | join: ", " | escape }}. {% endif %}{{ title_link }}. {{ citation.Publication | default: "" | escape }}. {{ citation.Year | default: "" | escape }}.
       </li>
     {% endif %}
     

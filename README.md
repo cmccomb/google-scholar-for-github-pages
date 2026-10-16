@@ -1,19 +1,53 @@
 # Google Scholar for GitHub Pages
-This is a Jekyll include file that pulls from a Google Scholar CSV file to output and format your references. Using it is pretty simple!
 
-1. Download your Google Scholar publications as a CSV. Make sure you get all of them.
-2. Upload that CSV file to the `_data/` directory of your site directory and make sure it's named `citations.csv`.
-3. Download the `publications` include file from this repository ([here](https://github.com/cmccomb/google-scholar-for-github-pages/blob/main/_includes/publications)).
-4. Upload that file to the `_includes/` directory of your site.
-5. That's it! You can see some usage examples and documentation [here](https://cmccomb.com/google-scholar-for-github-pages/).
+Publish a Google Scholar CSV as a formatted, filterable publication list on a Jekyll site. The renderer is a single Liquid include, with no custom Jekyll plugin or browser-side API request. Your CSV remains in your repository, so updates happen when you replace that file and rebuild the site.
 
-Optionally filter publications by passing parameters to the `publications` include. For example, set `venue_search_exclude` to a semicolon-separated list of venue terms to omit entries whose venue contains any of those terms.
+**[Live demo](https://cmccomb.com/google-scholar-for-github-pages/)** · **[Lab example](https://cmudrc.github.io/)**
 
-This is similar to [Jekyll Scholar](https://github.com/inukshuk/jekyll-scholar), but since this is a pure Liquid solution it works seamlessly with Github Pages!
+## Quick start
+
+1. In [your Google Scholar profile](https://scholar.google.com/), select all articles using the checkbox beside **Title**, choose **Export**, then **CSV**. [Google Scholar's help](https://scholar.google.com/intl/en/scholar/citations.html) describes the export steps. Review the export for duplicates or missing works before publishing it.
+2. Save the file as `_data/citations.csv` in your Jekyll repository. The required columns are `Authors`, `Title`, `Publication`, and `Year`. An optional `DOI` column may contain a `https://doi.org/` URL or a bare DOI beginning with `10.`. See [the small sample CSV](examples/citations.csv).
+3. Copy [`_includes/publications`](https://github.com/cmccomb/google-scholar-for-github-pages/blob/main/_includes/publications) into your site's `_includes/` directory.
+4. Add this to a page:
+
+   ```liquid
+   {% include publications link=true %}
+   ```
+
+The list is newest first. With `link=true`, titles link to their DOI when one is provided, or to a Google Scholar title search. Leave `link` out for plain text titles.
+
+## Filter and format
+
+```liquid
+{% include publications limit=5 link=true %}
+{% include publications author="Lovelace" year="2025;2026" link=true %}
+{% include publications venue_search="design" venue_search_exclude="conference" %}
+{% include publications style="mla" %}
+```
+
+| Parameter | Effect |
+| --- | --- |
+| `author` | Case-insensitive substring in the `Authors` field. |
+| `year` | Exact year. |
+| `venue` | Exact, case-insensitive publication venue. |
+| `venue_exclude` | Exclude exact venues. |
+| `title_search` | Case-insensitive substring in the title. |
+| `venue_search` | Case-insensitive substring in the venue. |
+| `venue_search_exclude` | Exclude venues containing a term. |
+| `limit` | Maximum number of matching publications. |
+| `link` | Set to `true` to link titles. Default: `false`. |
+| `style` | `apa` (default), `mla`, `chicago`, `harvard`, or `vancouver`. |
+
+Separate multiple values in a filter with semicolons. Values within one filter use **OR**; different filters use **AND**. For example, `year="2025;2026" venue_search="design"` includes design venues from either year.
+
+The citation styles are lightweight formats for website lists, not a substitute for a full citation processor. Check the rendered output if your data contains unusual author names or publication types.
+
+## Demo data and updates
+
+The [demo CSV](_data/citations.csv) mirrors the Design Research Collective's public publication data, including entries from 2026. It demonstrates a full-size list; use [the sample CSV](examples/citations.csv) for a small installation test. The demo is a snapshot, not a live Google Scholar sync. To refresh your own site, export a new CSV, review it, replace `_data/citations.csv`, and rebuild.
 
 ## Development
-
-Run the tests and build the site before publishing changes:
 
 ```bash
 gem install 'jekyll:4.4.1' 'jekyll-theme-tactile:0.2.0'
@@ -21,4 +55,8 @@ ruby tests/test_publications.rb
 jekyll build
 ```
 
-A GitHub Actions workflow runs these commands automatically and only builds the site when the tests succeed.
+[GitHub Actions](.github/workflows/ci.yml) runs the tests and builds the demo on pushes and pull requests. The renderer itself uses only Liquid and Jekyll filters, which keeps it compatible with GitHub Pages' Jekyll builds.
+
+## License
+
+[MIT](LICENSE)
