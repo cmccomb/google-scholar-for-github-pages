@@ -1,13 +1,21 @@
 require 'minitest/autorun'
 require 'liquid'
 require 'csv'
+require_relative 'liquid_branch_coverage'
+
+PUBLICATIONS_COVERAGE = LiquidBranchCoverage::Collector.new
+
+Minitest.after_run do
+  PUBLICATIONS_COVERAGE.write_reports(File.expand_path('../coverage', __dir__))
+end
 
 class PublicationsTemplateTest < Minitest::Test
   def setup
     fixture_path = File.expand_path('fixtures/citations.csv', __dir__)
     @citations = CSV.read(fixture_path, headers: true).map(&:to_h)
     template_path = File.expand_path('../_includes/publications', __dir__)
-    @template = Liquid::Template.parse(File.read(template_path))
+    @template = Liquid::Template.parse(File.read(template_path), line_numbers: true)
+    PUBLICATIONS_COVERAGE.instrument(@template)
   end
 
   def render(include_options = {}, citations = @citations)
@@ -37,6 +45,11 @@ class PublicationsTemplateTest < Minitest::Test
     result = render('venue_search' => 'design', 'venue_search_exclude' => 'conference').downcase
     assert_includes result, 'design studies'
     refute_includes result, 'design conference'
+  end
+
+  def test_search_filters_can_reject_every_row
+    assert_empty titles_in(render('title_search' => 'not present'))
+    assert_empty titles_in(render('venue_search' => 'not present'))
   end
 
   def test_filters_combine_and_limit_applies_after_filtering
@@ -89,6 +102,20 @@ class PublicationsTemplateTest < Minitest::Test
     end
   end
 
+  def test_all_styles_handle_a_row_without_authors
+    row = { 'Title' => 'Anonymous paper', 'Publication' => 'Journal', 'Year' => '2026' }
+    %w[apa mla chicago harvard vancouver].each do |style|
+      result = render({ 'style' => style }, [row])
+      assert_includes result, 'Anonymous paper', style
+      assert_equal 1, result.scan('<li>').length, style
+    end
+  end
+
+  def test_empty_csv_and_limit_larger_than_matches
+    assert_equal 0, render({}, []).scan('<li>').length
+    assert_equal 2, render('limit' => 10).scan('<li>').length
+  end
+
   def test_compact_output_uses_title_year_and_venue
     result = render('compact' => true, 'link' => true, 'limit' => 1)
     assert_match(/<li>\s*<a href="https:\/\/scholar\.google\.com\/scholar\?q=/, result)
@@ -103,5 +130,19 @@ class PublicationsTemplateTest < Minitest::Test
     refute_includes result, '<Example>'
     refute_includes result, '<Venue>'
     assert_includes render({}, [row]), '(2026)'
+    assert_match(/Empty fields\.\s*<\/li>/m, render({ 'compact' => true }, [{ 'Title' => 'Empty fields' }]))
+  end
+
+  def test_branch_collector_preserves_output_and_counts_both_paths
+    collector = LiquidBranchCoverage::Collector.new
+    template = collector.instrument(Liquid::Template.parse(
+      '{% if show %}{% for item in items %}{{ item }}{% endfor %}{% endif %}',
+      line_numbers: true
+    ))
+    assert_equal 'ab', template.render('show' => true, 'items' => %w[a b])
+    assert_equal '', template.render('show' => true, 'items' => [])
+    assert_equal '', template.render('show' => false, 'items' => %w[a b])
+    assert_equal 4, collector.total_count
+    assert_equal 4, collector.covered_count
   end
 end

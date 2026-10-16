@@ -1,0 +1,722 @@
+{
+  "metric": "Liquid conditional and loop branch coverage",
+  "covered": 109,
+  "total": 119,
+  "percent": 91,
+  "branches": [
+    {
+      "id": "for@L112#1/empty",
+      "line": 112,
+      "path": "empty",
+      "covered": false
+    },
+    {
+      "id": "for@L112#1/nonempty",
+      "line": 112,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L125#1/empty",
+      "line": 125,
+      "path": "empty",
+      "covered": false
+    },
+    {
+      "id": "for@L125#1/nonempty",
+      "line": 125,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L142#1/empty",
+      "line": 142,
+      "path": "empty",
+      "covered": true
+    },
+    {
+      "id": "for@L142#1/nonempty",
+      "line": 142,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L160#1/empty",
+      "line": 160,
+      "path": "empty",
+      "covered": true
+    },
+    {
+      "id": "for@L160#1/nonempty",
+      "line": 160,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L169#1/empty",
+      "line": 169,
+      "path": "empty",
+      "covered": true
+    },
+    {
+      "id": "for@L169#1/nonempty",
+      "line": 169,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L40#1/empty",
+      "line": 40,
+      "path": "empty",
+      "covered": true
+    },
+    {
+      "id": "for@L40#1/nonempty",
+      "line": 40,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L43#1/empty",
+      "line": 43,
+      "path": "empty",
+      "covered": false
+    },
+    {
+      "id": "for@L43#1/nonempty",
+      "line": 43,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L53#1/empty",
+      "line": 53,
+      "path": "empty",
+      "covered": false
+    },
+    {
+      "id": "for@L53#1/nonempty",
+      "line": 53,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L64#1/empty",
+      "line": 64,
+      "path": "empty",
+      "covered": false
+    },
+    {
+      "id": "for@L64#1/nonempty",
+      "line": 64,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L75#1/empty",
+      "line": 75,
+      "path": "empty",
+      "covered": false
+    },
+    {
+      "id": "for@L75#1/nonempty",
+      "line": 75,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L86#1/empty",
+      "line": 86,
+      "path": "empty",
+      "covered": false
+    },
+    {
+      "id": "for@L86#1/nonempty",
+      "line": 86,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "for@L99#1/empty",
+      "line": 99,
+      "path": "empty",
+      "covered": false
+    },
+    {
+      "id": "for@L99#1/nonempty",
+      "line": 99,
+      "path": "nonempty",
+      "covered": true
+    },
+    {
+      "id": "if@L101#1/else",
+      "line": 101,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L101#1/if",
+      "line": 101,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L109#1/else",
+      "line": 109,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L109#1/if",
+      "line": 109,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L114#1/else",
+      "line": 114,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L114#1/if",
+      "line": 114,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L12#1/else",
+      "line": 12,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L12#1/if",
+      "line": 12,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L122#1/else",
+      "line": 122,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L122#1/if",
+      "line": 122,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L127#1/else",
+      "line": 127,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L127#1/if",
+      "line": 127,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L135#1/else",
+      "line": 135,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L135#1/if",
+      "line": 135,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L144#1/else",
+      "line": 144,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L144#1/if",
+      "line": 144,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L146#1/else",
+      "line": 146,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L146#1/if",
+      "line": 146,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L159#1/else",
+      "line": 159,
+      "path": "else",
+      "covered": false
+    },
+    {
+      "id": "if@L159#1/elsif-1",
+      "line": 159,
+      "path": "elsif-1",
+      "covered": true
+    },
+    {
+      "id": "if@L159#1/if",
+      "line": 159,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L16#1/else",
+      "line": 16,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L16#1/if",
+      "line": 16,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L161#1/else",
+      "line": 161,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L161#1/if",
+      "line": 161,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L172#1/else",
+      "line": 172,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L172#1/if",
+      "line": 172,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L175#1/else",
+      "line": 175,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L175#1/if",
+      "line": 175,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L184#1/else",
+      "line": 184,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L184#1/elsif-1",
+      "line": 184,
+      "path": "elsif-1",
+      "covered": true
+    },
+    {
+      "id": "if@L184#1/if",
+      "line": 184,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L191#1/else",
+      "line": 191,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L191#1/if",
+      "line": 191,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L197#1/else",
+      "line": 197,
+      "path": "else",
+      "covered": false
+    },
+    {
+      "id": "if@L197#1/elsif-1",
+      "line": 197,
+      "path": "elsif-1",
+      "covered": true
+    },
+    {
+      "id": "if@L197#1/elsif-2",
+      "line": 197,
+      "path": "elsif-2",
+      "covered": true
+    },
+    {
+      "id": "if@L197#1/elsif-3",
+      "line": 197,
+      "path": "elsif-3",
+      "covered": true
+    },
+    {
+      "id": "if@L197#1/elsif-4",
+      "line": 197,
+      "path": "elsif-4",
+      "covered": true
+    },
+    {
+      "id": "if@L197#1/elsif-5",
+      "line": 197,
+      "path": "elsif-5",
+      "covered": true
+    },
+    {
+      "id": "if@L197#1/if",
+      "line": 197,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L199#1/else",
+      "line": 199,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L199#1/if",
+      "line": 199,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L199#2/else",
+      "line": 199,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L199#2/if",
+      "line": 199,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L20#1/else",
+      "line": 20,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L20#1/if",
+      "line": 20,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L203#1/else",
+      "line": 203,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L203#1/if",
+      "line": 203,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L207#1/else",
+      "line": 207,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L207#1/if",
+      "line": 207,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L211#1/else",
+      "line": 211,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L211#1/if",
+      "line": 211,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L215#1/else",
+      "line": 215,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L215#1/if",
+      "line": 215,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L219#1/else",
+      "line": 219,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L219#1/if",
+      "line": 219,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L223#1/else",
+      "line": 223,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L223#1/if",
+      "line": 223,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L225#1/else",
+      "line": 225,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L225#1/if",
+      "line": 225,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L24#1/else",
+      "line": 24,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L24#1/if",
+      "line": 24,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L28#1/else",
+      "line": 28,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L28#1/if",
+      "line": 28,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L32#1/else",
+      "line": 32,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L32#1/if",
+      "line": 32,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L42#1/else",
+      "line": 42,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L42#1/if",
+      "line": 42,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L44#1/else",
+      "line": 44,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L44#1/if",
+      "line": 44,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L50#1/else",
+      "line": 50,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L50#1/if",
+      "line": 50,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L55#1/else",
+      "line": 55,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L55#1/if",
+      "line": 55,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L61#1/else",
+      "line": 61,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L61#1/if",
+      "line": 61,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L66#1/else",
+      "line": 66,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L66#1/if",
+      "line": 66,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L72#1/else",
+      "line": 72,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L72#1/if",
+      "line": 72,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L77#1/else",
+      "line": 77,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L77#1/if",
+      "line": 77,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L8#1/else",
+      "line": 8,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L8#1/if",
+      "line": 8,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L83#1/else",
+      "line": 83,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L83#1/if",
+      "line": 83,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L88#1/else",
+      "line": 88,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L88#1/if",
+      "line": 88,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "if@L96#1/else",
+      "line": 96,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "if@L96#1/if",
+      "line": 96,
+      "path": "if",
+      "covered": true
+    },
+    {
+      "id": "unless@L166#1/else",
+      "line": 166,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "unless@L166#1/unless",
+      "line": 166,
+      "path": "unless",
+      "covered": true
+    },
+    {
+      "id": "unless@L3#1/else",
+      "line": 3,
+      "path": "else",
+      "covered": true
+    },
+    {
+      "id": "unless@L3#1/unless",
+      "line": 3,
+      "path": "unless",
+      "covered": true
+    }
+  ]
+}
