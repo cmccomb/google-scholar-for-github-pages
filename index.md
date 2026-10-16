@@ -37,6 +37,10 @@ The same file can show a smaller list. This example includes journal venues with
 {% raw %}
 ```liquid
 {% include publications venue_search="design" venue_search_exclude="conference" limit=5 link=true %}
+```
+{% endraw %}
+
+{% include publications venue_search="design" venue_search_exclude="conference" limit=5 link=true %}
 
 ## Compact example
 
@@ -49,7 +53,3 @@ For a homepage or sidebar, show linked titles with year and venue while keeping 
 {% endraw %}
 
 {% include publications compact=true limit=3 link=true %}
-```
-{% endraw %}
-
-{% include publications venue_search="design" venue_search_exclude="conference" limit=5 link=true %}
