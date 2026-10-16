@@ -2,7 +2,7 @@
 
 [![CI status](https://img.shields.io/github/actions/workflow/status/cmccomb/google-scholar-for-github-pages/ci.yml?branch=main&label=CI)](https://github.com/cmccomb/google-scholar-for-github-pages/actions/workflows/ci.yml)
 [![Latest release](https://img.shields.io/github/v/release/cmccomb/google-scholar-for-github-pages?label=release)](https://github.com/cmccomb/google-scholar-for-github-pages/releases/latest)
-[![Liquid branch coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcmccomb%2Fgoogle-scholar-for-github-pages%2Fmain%2Fcoverage%2Fliquid-branches-badge.json)](coverage/liquid-branches.json)
+[![Liquid test coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcmccomb%2Fgoogle-scholar-for-github-pages%2Fmain%2Fcoverage%2Fliquid-branches-badge.json)](coverage/liquid-branches.json)
 [![MIT license](https://img.shields.io/github/license/cmccomb/google-scholar-for-github-pages)](LICENSE)
 
 Publish a Google Scholar CSV as a formatted, filterable publication list on a Jekyll site. The renderer is a single Liquid include, with no custom Jekyll plugin or browser-side API request. Your CSV remains in your repository, so updates happen when you replace that file and rebuild the site.

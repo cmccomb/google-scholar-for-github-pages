@@ -65,7 +65,7 @@ module LiquidBranchCoverage
       }
       badge = {
         schemaVersion: 1,
-        label: 'Liquid branches',
+        label: 'Liquid test coverage',
         message: "#{percent}%",
         color: percent >= 90 ? 'brightgreen' : percent >= 75 ? 'yellow' : 'red'
       }
