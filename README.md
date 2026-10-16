@@ -24,6 +24,7 @@ The list is newest first. With `link=true`, titles link to their DOI when one is
 {% include publications author="Lovelace" year="2025;2026" link=true %}
 {% include publications venue_search="design" venue_search_exclude="conference" %}
 {% include publications style="mla" %}
+{% include publications compact=true limit=3 link=true %}
 ```
 
 | Parameter | Effect |
@@ -38,6 +39,7 @@ The list is newest first. With `link=true`, titles link to their DOI when one is
 | `limit` | Maximum number of matching publications. |
 | `link` | Set to `true` to link titles. Default: `false`. |
 | `style` | `apa` (default), `mla`, `chicago`, `harvard`, or `vancouver`. |
+| `compact` | Set to `true` for title, year, and venue only. Overrides `style`. |
 
 Separate multiple values in a filter with semicolons. Values within one filter use **OR**; different filters use **AND**. For example, `year="2025;2026" venue_search="design"` includes design venues from either year.
 
@@ -55,7 +57,7 @@ ruby tests/test_publications.rb
 jekyll build
 ```
 
-[GitHub Actions](.github/workflows/ci.yml) runs the tests and builds the demo on pushes and pull requests. The renderer itself uses only Liquid and Jekyll filters, which keeps it compatible with GitHub Pages' Jekyll builds.
+[GitHub Actions](.github/workflows/ci.yml) tests and builds with Jekyll 3.10, 4.3, and 4.4 on pushes and pull requests. The renderer itself uses only Liquid and Jekyll filters, which keeps it compatible with GitHub Pages' Jekyll builds.
 
 ## License
 
