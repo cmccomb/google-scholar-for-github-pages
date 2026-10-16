@@ -10,13 +10,82 @@ class PublicationsTemplateTest < Minitest::Test
     @template = Liquid::Template.parse(File.read(template_path))
   end
 
+  def render(include_options = {}, citations = @citations)
+    @template.render(
+      'site' => { 'data' => { 'citations' => citations } },
+      'include' => include_options
+    )
+  end
+
+  def titles_in(result)
+    result.scan(/Test (?:Conference|Journal) Paper/)
+  end
+
+  def test_exact_venue_does_not_return_other_venues
+    result = render('venue' => 'Design Conference; Design Studies')
+    assert_equal 2, titles_in(result).length
+    result = render('venue' => 'Design Studies')
+    assert_equal ['Test Journal Paper'], titles_in(result)
+  end
+
+  def test_exact_venue_and_exclusion_are_combined
+    assert_empty titles_in(render('venue' => 'Design Studies', 'venue_exclude' => 'Design Studies'))
+    assert_equal ['Test Journal Paper'], titles_in(render('venue' => 'Design Studies', 'venue_exclude' => 'Design Conference'))
+  end
+
   def test_venue_search_exclude
-    context = {
-      'site' => { 'data' => { 'citations' => @citations } },
-      'include' => { 'venue_search' => 'design', 'venue_search_exclude' => 'conference' }
-    }
-    result = @template.render(context).downcase
+    result = render('venue_search' => 'design', 'venue_search_exclude' => 'conference').downcase
     assert_includes result, 'design studies'
     refute_includes result, 'design conference'
+  end
+
+  def test_filters_combine_and_limit_applies_after_filtering
+    result = render('author' => 'doe', 'year' => '2021', 'title_search' => 'journal', 'limit' => 1)
+    assert_equal ['Test Journal Paper'], titles_in(result)
+    assert_empty titles_in(render('author' => 'missing', 'year' => '2021'))
+  end
+
+  def test_escapes_csv_text_and_rejects_unsafe_doi_url
+    citation = {
+      'Authors' => 'Doe, Jane; ',
+      'Title' => '<script>alert(1)</script>',
+      'Publication' => '<b>Journal</b>',
+      'Year' => '2026',
+      'DOI' => 'javascript:alert(1)'
+    }
+    result = render({ 'link' => true }, [citation])
+    assert_includes result, '&lt;script&gt;alert(1)&lt;/script&gt;'
+    assert_includes result, '&lt;b&gt;Journal&lt;/b&gt;'
+    assert_includes result, 'https://scholar.google.com/scholar?q='
+    refute_includes result, '<script>'
+    refute_includes result, 'href="javascript:'
+  end
+
+  def test_prefers_doi_and_handles_sparse_rows
+    rows = [
+      { 'Authors' => 'Doe, Jane', 'Title' => 'DOI paper', 'Publication' => 'Journal', 'Year' => '2026', 'DOI' => '10.1234/example' },
+      { 'Authors' => 'Smith, John', 'Title' => 'DOI URL paper', 'Publication' => 'Journal', 'Year' => '2026', 'DOI' => 'https://doi.org/10.5678/example' },
+      { 'Title' => 'Sparse paper', 'Year' => '2025' }
+    ]
+    result = render({ 'link' => true }, rows)
+    assert_includes result, 'href="https://doi.org/10.1234/example"'
+    assert_includes result, 'href="https://doi.org/10.5678/example"'
+    assert_includes result, 'Sparse paper'
+    assert_equal 3, result.scan('<li>').length
+  end
+
+  def test_google_scholar_csv_with_bom_in_authors_header
+    row = { "\uFEFFAuthors" => 'Lovelace, Ada; ', 'Title' => 'BOM paper', 'Publication' => 'Journal', 'Year' => '2026' }
+    result = render({ 'author' => 'Lovelace' }, [row])
+    assert_includes result, 'BOM paper'
+    assert_includes result, 'Lovelace'
+  end
+
+  def test_all_styles_render_and_unknown_style_uses_apa
+    %w[apa mla chicago harvard vancouver unknown].each do |style|
+      result = render('style' => style, 'limit' => 1)
+      assert_equal 1, result.scan('<li>').length, style
+      assert_includes result, 'Test Journal Paper', style
+    end
   end
 end
